@@ -4,21 +4,44 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import LoginFormPage from "./components/LoginFormPage";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
     <>
+      <h2>AirBnB</h2>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path='/'>
+            <h2>Home</h2>
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
+            <h2>Sign Up</h2>
+          </Route>
+          <Route path="/login">
+            <LoginFormPage></LoginFormPage>
+            <h2>Login</h2>
+          </Route>
+          <Route path="/profile">
+            <h2>Profile</h2>
+          </Route>
+          <Route path="/listings">
+            <h2>Listings</h2>
+          </Route>
+          <Route path="/listing/:id">
+            <h2>Listing</h2>
+          </Route>
+          <Route path="*">
+            <h2>Page Not Found</h2>
           </Route>
         </Switch>
       )}
