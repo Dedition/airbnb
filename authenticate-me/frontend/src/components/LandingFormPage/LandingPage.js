@@ -1,10 +1,12 @@
 import React from 'react';
 import './LandingFormPage.css';
+import Banner from './Banner';
 
 export default function LandingPage() {
     return (
         <div className='home'>
             <h1>Airbnb</h1>
+            <Banner />
         </div>
     )
 }

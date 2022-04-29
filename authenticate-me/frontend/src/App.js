@@ -20,8 +20,8 @@ function App() {
     <>
       <div className="app">
         <Header />
-        <Landing />
         <Navigation isLoaded={isLoaded} />
+        <Landing />
       </div>
       {isLoaded && (
         <Switch>
@@ -45,9 +45,9 @@ function App() {
           <Route path="/listing/:id">
             <h2>Listing</h2>
           </Route>
-          {/* <Route path="*">
+          <Route path="*">
             <h2>Page Not Found</h2>
-          </Route> */}
+          </Route>
         </Switch>
       )}
     </>
