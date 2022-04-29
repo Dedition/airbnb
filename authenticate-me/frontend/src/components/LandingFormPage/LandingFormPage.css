@@ -1,0 +1,10 @@
+.header_container-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    background-color: black;
+    color: white;
+    z-index: -2;
+}
