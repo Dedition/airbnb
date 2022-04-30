@@ -1,13 +1,15 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Images = sequelize.define('image', {
+  const Image = sequelize.define('Image', {
     spotId: DataTypes.INTEGER,
-    url: DataTypes.TEXT
+    url: DataTypes.STRING
   }, {});
-  Images.associate = function (models) {
+  Image.associate = function (models) {
     // associations can be defined here
-    Images.belongsTo(models.Spot, { foreignKey: "spotId" });
-
+    Image.belongsTo(models.Spot, {
+      foreignKey: 'spotId',
+      onDelete: 'CASCADE'
+    });
   };
-  return Images;
+  return Image;
 };
