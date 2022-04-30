@@ -1,4 +1,18 @@
 'use strict';
+const addressData = require('../../assets/addresses/address.json');
+const newAdd = [];
+
+addressData.forEach(address => {
+  newAdd.push({
+    userId: Math.floor(Math.random() * 3) + 1,
+    address: address.address1,
+    city: address.city,
+    state: address.state,
+    country: address.country,
+    name: address.display_address[1],
+    price: Math.floor(Math.random() * 10000000)
+  });
+});
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -21,6 +35,7 @@ module.exports = {
       name: 'Spot 1',
       price: 100
     },
+    ...newAdd,
     ], {});
   },
 
