@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import LoginFormPage from "./components/LoginFormPage";
 import Landing from "./components/LandingFormPage/LandingPage";
+import Header from "./components/Header/Header";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,20 +18,22 @@ function App() {
 
   return (
     <>
-      <h2>AirBnB</h2>
-      <Navigation isLoaded={isLoaded} />
+      <div className="app">
+        <Header />
+        <Navigation isLoaded={isLoaded} />
+        <Landing />
+      </div>
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
             <h2>Home</h2>
-            <Landing></Landing>
           </Route>
           <Route path="/signup">
             <SignupFormPage />
             <h2>Sign Up</h2>
           </Route>
           <Route path="/login">
-            <LoginFormPage></LoginFormPage>
+            <LoginFormPage />
             <h2>Login</h2>
           </Route>
           <Route path="/profile">
