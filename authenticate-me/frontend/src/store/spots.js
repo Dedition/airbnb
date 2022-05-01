@@ -92,7 +92,6 @@ const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SPOT:
             newState = Object.assign({}, state);
-            // newState = action.payload;
             action.payload.forEach(spot => {
                 newState[spot.id] = spot;
             });

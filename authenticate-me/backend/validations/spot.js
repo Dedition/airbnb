@@ -1,14 +1,6 @@
 const { check } = require('express-validator');
-const { Spot } = require('../../db/models');
-const { handleValidationErrors } = require('../../utils/validation');
-
-// userId: DataTypes.INTEGER,
-//     address: DataTypes.STRING,
-//         city: DataTypes.STRING,
-//             state: DataTypes.STRING,
-//                 country: DataTypes.STRING,
-//                     name: DataTypes.STRING,
-//                         price: DataTypes.DECIMAL
+const { Spot } = require('../db/models');
+const { handleValidationErrors } = require('../utils/validation');
 
 const id = check('id')
     .exists({ checkFalsy: true })
@@ -21,10 +13,12 @@ const address = check('address')
 const city = check('city')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a city.')
+    .isString()
     .isLength({ min: 4 });
 const state = check('state')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a state.')
+    .isString()
     .isLength({ min: 2 });
 const country = check('country')
     .exists({ checkFalsy: true })

@@ -6,21 +6,11 @@ export default function LandingPage() {
     return (
         <div className='home'>
             <div className='home-banner'>
-                {/* <h1>Airbnb</h1> */}
                 <Banner />
             </div>
-            {/* <h2>Hello</h2> */}
         </div>
     )
 }
-
-
-
-
-
-
-
-
 
 
 // const Landing = props => {

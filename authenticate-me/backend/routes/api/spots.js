@@ -2,6 +2,8 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Spot } = require('../../db/models');
 
+const spotValidation = require('../../validations/spot');
+
 const router = express.Router();
 const stateValReg = /^(?:(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]))$/;
 
@@ -17,14 +19,9 @@ router.get("/:id", asyncHandler(async (req, res) => {
     return res.json({ id });
 }));
 
-
-// router.post(
-//     '/',
-//     pokemonValidations.validateCreate,
-//     asyncHandler(async function (req, res) {
-//       const id = await PokemonRepository.create(req.body);
-//       return res.redirect(`${req.baseUrl}/${id}`);
-//     })
-//   );
+router.post('/', spotValidation.validateCreate, asyncHandler(async (req, res) => {
+    const spotId = await Spot.createSpot(req.body);
+    return res.redirect(`${req.baseUrl}/${spotId}`);
+}));
 
 module.exports = router;
