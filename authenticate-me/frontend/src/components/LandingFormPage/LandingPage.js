@@ -5,11 +5,15 @@ import Banner from './Banner';
 export default function LandingPage() {
     return (
         <div className='home'>
-            <h1>Airbnb</h1>
-            <Banner />
+            <div className='home-banner'>
+                {/* <h1>Airbnb</h1> */}
+                <Banner />
+            </div>
+            {/* <h2>Hello</h2> */}
         </div>
     )
 }
+
 
 
 

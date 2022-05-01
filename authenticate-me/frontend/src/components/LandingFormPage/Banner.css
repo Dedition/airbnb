@@ -1,20 +1,85 @@
 .banner {
     /* Background image of a nice apartment */
-    background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
-    height: 150vh;
-    position: relative;
+    /* background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'); */
+    margin: 0 auto;
     background-size: cover;
+    background-position: center;
+    height: 160vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: 2px 2px black;
+    z-index: -1;
+    background-color: black;
 }
 
-#banner_content {
-    display: grid;
+/* .banner_container {
+    background-color: black;
+} */
+
+.banner #banner_content {
     position: relative;
     align-self: center;
-    background-color: black;
+    background-color: #FF385C;
+    border-radius: 12px;
     padding: 25vh 50px 40px 50px;
-    width: 300px;
+    width: 1600px;
     color: white;
+    height: 250px;
     /* grid-area: 1 / 1 / 1 / 1 !important; */
     /* min-width: 0px !important; */
     /* overflow-wrap: anywhere !important; */
+}
+
+#banner_content h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: 2px 2px black;
+    /* font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif; */
+    font-family: 'Circular', 'Roboto', sans-serif;
+}
+
+/* Make the button transparent with a lightsmoke border*/
+
+#banner_content button {
+    background-color: transparent;
+    border: 1px white solid;
+    border-radius: 8px;
+    color: white;
+    padding: 8px 16px;
+    margin-top: 35px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 2px 2px black;
+}
+
+#banner_lower_image {
+    /* Background image of a camp in a forest */
+    background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    margin-top: 65px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: 2px 2px black;
+    z-index: -1;
+    background-color: black;
 }

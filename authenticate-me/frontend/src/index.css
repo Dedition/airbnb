@@ -1,5 +1,5 @@
 /* TODO Add site wide styles */
-html,
+/* html,
 body,
 div,
 span,
@@ -86,10 +86,10 @@ video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-}
+} */
 
 /* HTML5 display-role reset for older browsers */
-article,
+/* article,
 aside,
 details,
 figcaption,
@@ -128,4 +128,12 @@ q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+}  */
+
+body {
+    height: 100%;
+    background: linear-gradient(0deg, #ffffff 50%, #000000 50%) !important;
+    color: white;
+    font-family: 'Circular', 'Roboto', sans-serif;
+    margin: none;
 }
