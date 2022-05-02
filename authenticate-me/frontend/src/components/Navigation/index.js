@@ -46,3 +46,9 @@ function Navigation({ isLoaded }) {
 }
 
 export default Navigation;
+//                 <i className="fa-solid fa-globe" />
+//                 <i className='fa-solid fa-bars' />
+//                 <i className="fa-solid fa-user-circle" />
+//             </div>
+//         </div >
+//     )
