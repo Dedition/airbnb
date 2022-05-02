@@ -2,10 +2,6 @@ const { check } = require('express-validator');
 const { Spot } = require('../db/models');
 const { handleValidationErrors } = require('../utils/validation');
 
-const id = check('id')
-    .exists({ checkFalsy: true })
-    .withMessage('Cannot be blank.')
-    .isInt({ min: 0 });
 const address = check('address')
     .exists({ checkFalsy: true })
     .withMessage('Please provide an address.')
@@ -31,10 +27,9 @@ const name = check('name')
 const price = check('price')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a price.')
-    .isDecimal({ min: 0 });
+// .isDecimal({ min: 0 });
 
 exports.validateCreate = [
-    id,
     address,
     city,
     state,
@@ -45,7 +40,6 @@ exports.validateCreate = [
 ];
 
 exports.validateUpdate = [
-    id,
     address,
     city,
     state,
