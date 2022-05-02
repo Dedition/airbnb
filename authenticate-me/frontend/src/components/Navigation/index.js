@@ -26,13 +26,22 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <ul>
-            <li>
-                <NavLink exact to="/">Home</NavLink>
-                {isLoaded && sessionLinks}
-                {/* <Header /> */}
-            </li>
-        </ul>
+        <div className='header'>
+            <img className='header_icon' src={process.env.PUBLIC_URL + `/images/svgexport-1.png`} alt="" />
+            <div className='header_center'>
+                <input type="text" />
+                <i className="fa-solid fa-magnifying-glass" />
+            </div>
+            <ul>
+                <div className='header-right'>
+                    <a href="" className='header_right_text'>Become A Host</a>
+                    <li>
+                        <NavLink exact to="/">Home</NavLink>
+                        {isLoaded && sessionLinks}
+                    </li>
+                </div>
+            </ul>
+        </div>
     );
 }
 
