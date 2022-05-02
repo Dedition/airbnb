@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
-// import Header from './Header';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -56,9 +55,3 @@ function Navigation({ isLoaded }) {
 }
 
 export default Navigation;
-//                 <i className="fa-solid fa-globe" />
-//                 <i className='fa-solid fa-bars' />
-//                 <i className="fa-solid fa-user-circle" />
-//             </div>
-//         </div >
-//     )

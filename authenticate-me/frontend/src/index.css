@@ -1,4 +1,12 @@
 /* TODO Add site wide styles */
+
+body {
+    height: 100%;
+    /* background: linear-gradient(0deg, #ffffff 50%, #000000 50%); */
+    font-family: 'Circular', 'Roboto', sans-serif;
+    margin: none;
+}
+
 /* html,
 body,
 div,
@@ -129,11 +137,3 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }  */
-
-body {
-    height: 100%;
-    background: linear-gradient(0deg, #ffffff 50%, #000000 50%) !important;
-    color: white;
-    font-family: 'Circular', 'Roboto', sans-serif;
-    margin: none;
-}

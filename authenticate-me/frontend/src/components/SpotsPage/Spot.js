@@ -7,10 +7,12 @@ import "./Spot.css";
 export function Listings() {
     const spots = useSelector(state => state.spots);
     return (
-        <ul>
-            {Object.values(spots).map((spot) => (
-                <li key={spot.id}>{spot.address}</li>
-            ))}
-        </ul>
+        <div>
+            <ul>
+                {Object.values(spots).map((spot) => (
+                    <li key={spot.id}>{spot.address}</li>
+                ))}
+            </ul>
+        </div>
     );
 }

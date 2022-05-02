@@ -7,7 +7,6 @@ import * as spotActions from "./store/spots";
 import Navigation from "./components/Navigation";
 import LoginFormPage from "./components/LoginFormPage";
 import Landing from "./components/LandingFormPage/LandingPage";
-// import Header from "./components/Header/Header";
 import { Listings } from "./components/SpotsPage/Spot";
 
 function App() {
@@ -27,8 +26,6 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
-            <h2>Home</h2>
-            {/* <Header /> */}
             <Landing />
           </Route>
           <Route path="/signup">

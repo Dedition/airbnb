@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import Header from "../Header/Header";
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
