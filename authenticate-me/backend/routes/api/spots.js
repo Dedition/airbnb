@@ -15,8 +15,8 @@ router.get('/', asyncHandler(async (req, res) => {
 
 
 router.get("/:id", asyncHandler(async (req, res) => {
-    const spot = await Spot.deleteSpot(req.params.id);
-    return res.json({ id });
+    const spotId = await Spot.findOne(req.params.id);
+    return res.json({ spotId });
 }));
 
 router.post('/', spotValidation.validateCreate, asyncHandler(async (req, res) => {

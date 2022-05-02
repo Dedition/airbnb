@@ -1,12 +1,11 @@
 import React from 'react'
 
-function ListingCard() {
+function ListingCards() {
     return (
-        <div>
-            ListingCard
-            <hi>Hello</hi>
+        <div className='cards_container'>
+            <h1>ListingCard</h1>
         </div>
     )
 }
 
-export default ListingCard
+export default ListingCards

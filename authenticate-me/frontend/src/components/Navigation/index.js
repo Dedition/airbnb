@@ -1,13 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
-// import Header from './Header';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
+    console.log(isLoaded)
 
     let sessionLinks;
     if (sessionUser) {
@@ -27,14 +27,23 @@ function Navigation({ isLoaded }) {
 
     return (
         <div className='header'>
-            <img className='header_icon' src={process.env.PUBLIC_URL + `/images/svgexport-1.png`} alt="" />
+            <Link to="/">
+                <img className='header_icon' src={process.env.PUBLIC_URL + `/images/svgexport-1.png`} alt=""
+                />
+            </Link>
             <div className='header_center'>
                 <input type="text" />
                 <i className="fa-solid fa-magnifying-glass" />
             </div>
             <ul>
                 <div className='header-right'>
-                    <a href="" className='header_right_text'>Become A Host</a>
+                    {!sessionUser && (
+                        <div className='sign-up'>
+                            <a href="/signup" className='header_right_text'>Become A Host</a>
+                            <LoginFormModal />
+                            <NavLink to="/signup">Sign Up</NavLink>
+                        </div>
+                    )}
                     <li>
                         <NavLink exact to="/">Home</NavLink>
                         {isLoaded && sessionLinks}
