@@ -1,0 +1,44 @@
+.search {
+    position: absolute;
+    top: 200px;
+    left: 25%;
+    width: 100vw;
+    z-index: 100;
+}
+
+/* .guest_container {
+    position: absolute;
+    top: 200px;
+    left: 20px;
+    width: 100vw;
+    z-index: 100;
+} */
+
+
+.search>h2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 559px;
+    padding: 10px;
+    background-color: black;
+    position: absolute;
+    left: 0;
+    top: 303px;
+    z-index: 100;
+}
+
+.search>input {
+    width: 539px;
+    padding: 20px;
+    position: absolute;
+    left: 0;
+    height: 30px;
+    top: 420px;
+    border: none;
+    z-index: 100;
+}
+
+.search>input:focus {
+    outline: none;
+}

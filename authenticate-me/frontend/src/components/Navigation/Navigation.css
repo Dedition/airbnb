@@ -1,16 +1,41 @@
 .header {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     background-color: black;
+    color: white;
     z-index: 100;
     width: 100%;
     margin: none;
 }
 
-.header_icon {
+/* Align the two buttons side-by-side */
+.profile_button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 2s ease-in-out;
+    box-shadow: 2px 2px black;
+    outline: none;
+}
+
+.fa-user-circle {
+    display: flex;
+    flex-direction: column;
+    margin-right: 100px;
+}
+
+.profile .header_icon {
     object-fit: contain;
     height: 20px;
     margin-left: 20px;

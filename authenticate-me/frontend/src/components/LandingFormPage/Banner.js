@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Banner.css';
 import Search from './Search';
 
@@ -11,13 +12,14 @@ function Banner() {
                 {showSearch && <Search />}
                 <button onClick={() => setShowSearch(!showSearch)} className='banner_searchbutton'>
                     SEARCH DATES
-
                 </button>
             </div>
             <div className='banner_container'>
                 <div id='banner_content'>
                     <h1 id="banner_text">Help house 100,000 refugees fleeing Ukraine</h1>
-                    <button id="banner_button">Explore Now</button>
+                    <a href="https://www.airbnb.org/help-ukraine?locale=en">
+                        <button id="banner_button">Explore Now</button>
+                    </a>
                 </div>
             </div>
             <div id='banner_lower_image'>

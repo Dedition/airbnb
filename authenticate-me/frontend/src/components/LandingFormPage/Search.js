@@ -25,9 +25,12 @@ function Search() {
         <div className='search'>
             <DateRangePicker ranges={[selectionRange]}
                 onChange={handleSelect} />
-            {showSearch && <Search />}
             <button onClick={() => setShowSearch(!showSearch)} className='banner_searchbutton'></button>
-            Search
+            {showSearch && <Search />}
+            <h2>Number of guests
+            </h2>
+            <input min={0} defaultValue={0} type='number' />
+            <button>Search Airbnb</button>
         </div>
     )
 }

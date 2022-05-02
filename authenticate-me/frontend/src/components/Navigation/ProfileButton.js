@@ -49,11 +49,11 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <div className="profile-button">
+            <div className="profile_button">
                 <i className="fa-solid fa-user-circle" onClick={openList} />
                 {showList && (
-                    <div className="profile-menu">
-                        <div className="profile-menu-body"></div>
+                    <div className="profile_menu">
+                        <div className="profile_menu_body"></div>
                         <ul className="profile_dropdown">
                             <li a href="">My Listings</li>
                             <li a href="">My Bookings</li>
@@ -63,12 +63,12 @@ function ProfileButton({ user }) {
                     </div>
                 )}
                 {showMenu && (
-                    <div className="profile-menu">
-                        <div className="profile-menu-header">
+                    <div className="profile_menu">
+                        <div className="profile_menu_header">
                             <img src={user.image} alt="" />
                             <h3>{user.name}</h3>
                         </div>
-                        <div className="profile-menu-footer">
+                        <div className="profile_menu_footer">
                             <a href="" onClick={logout}>Logout</a>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ function ProfileButton({ user }) {
             </button>
 
             {showMenu && (
-                <ul className="profile-dropdown">
+                <ul className="profile_dropdown">
                     <li>{user.username}</li>
                     <li>{user.email}</li>
                     <li>
