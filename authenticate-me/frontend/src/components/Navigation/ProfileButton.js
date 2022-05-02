@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [showMenu, setShowMenu] = useState(false);
     const [showList, setShowList] = useState(false);
 
@@ -46,6 +47,8 @@ function ProfileButton({ user }) {
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
+
+        history.push('/welcome');
     };
 
     return (
@@ -69,9 +72,9 @@ function ProfileButton({ user }) {
                             <img src={user.image} alt="" />
                             <h3>{user.name}</h3>
                         </div>
-                        <div className="profile_menu_footer">
-                            <a href="" onClick={logout}>Logout</a>
-                        </div>
+                        {/* <div className="profile_menu_footer">
+                            <a href="/welcome" onClick={logout}>Logout</a>
+                        </div> */}
                     </div>
                 )}
             </div>

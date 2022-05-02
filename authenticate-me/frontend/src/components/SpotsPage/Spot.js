@@ -2,10 +2,9 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import "./Spot.css";
 
-
-
 export function Listings() {
     const spots = useSelector(state => state.spots);
+
     return (
         <div>
             <ul>

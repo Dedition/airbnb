@@ -32,14 +32,14 @@ const deleteSpot = (spotId) => {
     };
 };
 
-
 export const createSpotAction = (spot) => async (dispatch) => {
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
         body: JSON.stringify(spot),
     });
     const data = await response.json();
-    dispatch(createSpot(data.spot));
+    console.log('============', data);
+    dispatch(createSpot(data));
     return response;
 };
 
@@ -73,14 +73,15 @@ export const updateSpot = (spot) => async (dispatch) => {
 //     }
 // };
 
-export const removeSpot = (spotId) => async (dispatch) => {
+export const removeSpot = (spotId, userId) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE',
     });
+    // console.log(response);
 
     if (response.ok) {
         const { id: delSpotId } = await response.json();
-        dispatch(deleteSpot(delSpotId));
+        dispatch(deleteSpot(delSpotId, userId));
         return delSpotId;
     };
 };
@@ -91,6 +92,8 @@ const spotReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case GET_SPOT:
+            // newState = Object.assign({}, state);
+            // newState = action.payload;
             newState = Object.assign({}, state);
             action.payload.forEach(spot => {
                 newState[spot.id] = spot;
@@ -101,6 +104,15 @@ const spotReducer = (state = initialState, action) => {
             delete newState[action.spotId];
             return newState;
         case CREATE_SPOT:
+            // console.log(action.payload);
+            // console.log(state);
+            // newState = action.payload;
+            // newState = { ...state, ...newState };
+            // newState = Object.assign(...state, action.payload)
+            // newState[action.payload.id] = action.payload;
+            // newState = Object.assign({}, state);
+            // newState = action.payload;
+            // return newState;
             newState = { ...state };
             newState[action.payload.id] = action.payload;
             return newState;
