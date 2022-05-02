@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { Link, NavLink } from "react-router-dom";
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
@@ -55,10 +56,10 @@ function ProfileButton({ user }) {
                     <div className="profile_menu">
                         <div className="profile_menu_body"></div>
                         <ul className="profile_dropdown">
-                            <li a href="">My Listings</li>
-                            <li a href="">My Bookings</li>
-                            <li a href="">My Trips</li>
-                            <li a href="">Account Settings</li>
+                            <NavLink to="/listings">My Listings</NavLink>
+                            <NavLink to="/bookings">My Bookings</NavLink>
+                            <NavLink to="/trips">My Trips</NavLink>
+                            <NavLink to="/profile">Account Settings</NavLink>
                         </ul>
                     </div>
                 )}
