@@ -6,6 +6,7 @@ import Header from "../Header/Header";
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
+    const [showList, setShowList] = useState(false);
 
     const openMenu = () => {
         if (showMenu) return;
@@ -24,6 +25,24 @@ function ProfileButton({ user }) {
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
+    const openList = () => {
+        if (showList) return;
+        setShowList(true);
+    }
+
+    useEffect(() => {
+        if (!showList) return;
+
+        const closeList = () => {
+            setShowList(false);
+        }
+
+        document.addEventListener('click', closeList);
+
+        return () => document.removeEventListener("click", closeList);
+    }, [showList]);
+
+
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
@@ -32,21 +51,23 @@ function ProfileButton({ user }) {
     return (
         <>
             <div className="profile-button">
-                <i className="fa-solid fa-user-circle" onClick={openMenu} />
-
+                <i className="fa-solid fa-user-circle" onClick={openList} />
+                {showList && (
+                    <div className="profile-menu">
+                        <div className="profile-menu-body"></div>
+                        <ul className="profile_dropdown">
+                            <li a href="">My Listings</li>
+                            <li a href="">My Bookings</li>
+                            <li a href="">My Trips</li>
+                            <li a href="">Account Settings</li>
+                        </ul>
+                    </div>
+                )}
                 {showMenu && (
                     <div className="profile-menu">
                         <div className="profile-menu-header">
                             <img src={user.image} alt="" />
                             <h3>{user.name}</h3>
-                        </div>
-                        <div className="profile-menu-body">
-                            <ul className="profile_dropdown">
-                                <li a href="">My Listings</li>
-                                <li a href="">My Bookings</li>
-                                <li a href="">My Trips</li>
-                                <li a href="">Account Settings</li>
-                            </ul>
                         </div>
                         <div className="profile-menu-footer">
                             <a href="" onClick={logout}>Logout</a>
