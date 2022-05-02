@@ -15,8 +15,13 @@
     font-size: 2em;
     font-weight: bold;
     text-shadow: 2px 2px black;
-    z-index: -1;
+    z-index: 2;
     /* background-color: black; */
+}
+
+#head_banner {
+    /* background-color: black; */
+    background: linear-gradient(0deg, #ffffff 50%, #000000 50%) !important;
 }
 
 .banner_container {
@@ -73,7 +78,7 @@
     width: 22em;
     border-radius: 12px;
     display: flex;
-    margin-top: 65px;
+    margin: 0px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -84,4 +89,10 @@
     text-shadow: 2px 2px black;
     z-index: 100;
     background-color: black;
+}
+
+.spacer {
+    height: 65px;
+    background-color: black;
+    width: 100%;
 }

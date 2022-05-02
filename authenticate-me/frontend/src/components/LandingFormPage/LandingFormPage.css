@@ -8,4 +8,6 @@
     color: white;
     z-index: -2;
     background-color: black;
+    background: linear-gradient(0deg, #ffffff 50%, #000000 50%) !important;
+
 }

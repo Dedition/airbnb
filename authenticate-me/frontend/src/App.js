@@ -27,7 +27,6 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
-            <h2>Home</h2>
             {/* <Header /> */}
             <Landing />
           </Route>
