@@ -7,8 +7,10 @@ import * as spotActions from "./store/spots";
 import Navigation from "./components/Navigation";
 import LoginFormPage from "./components/LoginFormPage";
 import Landing from "./components/LandingFormPage/LandingPage";
-// import Header from "./components/Header/Header";
 import { Listings } from "./components/SpotsPage/Spot";
+import CreateSpot from "./components/SpotsPage/CreateSpot";
+import DeleteSpot from "./components/SpotsPage/DeleteSpot";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -27,7 +29,6 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
-            {/* <Header /> */}
             <Landing />
           </Route>
           <Route path="/signup">
@@ -43,10 +44,14 @@ function App() {
           </Route>
           <Route path="/listings">
             <h2>Listings</h2>
+            <DeleteSpot />
             <Listings />
           </Route>
           <Route path="/listing/:id">
             <h2>Listing</h2>
+          </Route>
+          <Route path="/add-spot">
+            <CreateSpot />
           </Route>
           <Route path="*">
             <h2>Page Not Found</h2>
