@@ -7,7 +7,8 @@ import {
 import * as spotActions from "../../store/spots";
 // import { createSpot, updateSpot } from "../../store/spots";
 
-const CreateSpot = () => {
+const CreateSpot = ({ edit }) => {
+    console.log(edit)
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -22,7 +23,7 @@ const CreateSpot = () => {
     // console.log(typeof userId);
 
     const spot = useSelector((state) => state.spots.spot);
-    console.log(spot)
+    // console.log(spot)
     const isLoading = useSelector((state) => state.spots.isLoading);
 
     const handleSubmit = (e) => {

@@ -23,14 +23,14 @@
     justify-content: center;
 }
 
-.banner_searchbutton {
+.banner_searchButton {
     background-color: white;
     font-weight: 900;
     text-transform: inherit;
     width: 100em;
     color: #ff7779;
     border: none;
-    border-radius: 5px;
+    border-radius: 200px;
     padding: 10px;
     cursor: pointer;
     box-shadow: 2px 2px black;

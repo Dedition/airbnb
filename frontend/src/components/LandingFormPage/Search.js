@@ -3,6 +3,9 @@ import './Search.css';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { DateRangePicker } from 'react-date-range';
+import { Button, Input } from 'reactstrap';
+
+
 
 // DATE PICKER COMPONENT
 function Search() {
@@ -23,14 +26,19 @@ function Search() {
 
     return (
         <div className='search'>
-            <DateRangePicker ranges={[selectionRange]}
-                onChange={handleSelect} />
-            <button onClick={() => setShowSearch(!showSearch)} className='banner_searchbutton'></button>
-            {showSearch && <Search />}
-            <h2>Number of guests
-            </h2>
+            <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
+            <div className='dateBtn'>
+                <h2>Number of guests</h2>
+                <div id='dateInput'>
+                    <Button>Search Airbnb</Button>
+                    <Input type="number" name="guests" min={0} max={10} />
+                </div>
+
+            </div>
+            {/* <button onClick={() => setShowSearch(!showSearch)} className='banner_searchButton'></button> */}
+            {/* {showSearch && <Search />}
             <input min={0} defaultValue={0} type='number' />
-            <button>Search Airbnb</button>
+            <Button color='primary'>Search</Button> */}
         </div>
     )
 }

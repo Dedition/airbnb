@@ -1,9 +1,9 @@
 import React from 'react'
 
-function ListingCards() {
+function ListingCards({ src, tile, description, price }) {
     return (
         <div className='cards_container'>
-            <h1>ListingCard</h1>
+            <img src={src} alt='listing' />
         </div>
     )
 }

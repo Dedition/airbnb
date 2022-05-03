@@ -33,7 +33,7 @@ function App() {
           <Route path="/signup"><SignupFormPage /><h2>Sign Up</h2></Route>
           <Route path="/login"><LoginFormPage /><h2>Login</h2></Route>
           <Route path="/profile"><h2>Profile</h2></Route>
-          <Route path="/listings"><h2>Listings</h2><Spot /><Listings /></Route>
+          <Route path="/listings"><h2>Listings</h2><Spot /><Listings /><CreateSpot /></Route>
           <Route path="/listing/:id"><h2>Listing</h2></Route>
           <Route path="/add-spot"><CreateSpot /></Route>
           <Route path="*"><h2>Page Not Found</h2></Route>
