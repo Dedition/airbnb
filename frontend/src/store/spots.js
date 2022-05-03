@@ -19,12 +19,12 @@ const deleteSpot = (spotId) => ({ type: DELETE_SPOT, spotId });
 export const createSpotAction = (spot) => async (dispatch) => {
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
-        headers: { 'Content-Type': 'multipart/form-data' },
-        body: spot
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(spot)
     });
     if (response.ok) {
         const data = await response.json();
-        console.log('============', data);
+        // console.log('============', data);
         dispatch(createSpot(data));
         return data;
     }
@@ -67,7 +67,7 @@ export const getOneSpot = (spotId) => async (dispatch) => {
 export const updateSpot = (spot, spotId) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'multipart/form-data' },
+        headers: { 'Content-Type': 'application/json' },
         body: spot
     });
     if (response.ok) {
@@ -113,16 +113,18 @@ const initialState = { listOfSpots: [] };
 const spotReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case CREATE_SPOT:
+        case CREATE_SPOT: {
             newState = { ...state, listOfSpots: [...state.listOfSpots] };
             newState.listOfSpots.unshift(action.spot);
             return newState;
+        }
         case GET_SPOT:
         case GET_ALL_SPOTS_BY_USER_ID: {
             newState = { ...state };
             const spots = [];
+            // console.log('action.payload', action.payload);
 
-            action.spots.forEach(spot => spots.push(spot));
+            action.payload.forEach(spot => spots.push(spot));
             newState.listOfSpots = spots;
             return newState;
         };

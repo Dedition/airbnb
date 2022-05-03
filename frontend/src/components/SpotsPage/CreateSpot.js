@@ -5,10 +5,12 @@ import {
     Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input, Label, Row
 } from "reactstrap";
 import * as spotActions from "../../store/spots";
+// import { createSpot, updateSpot } from "../../store/spots";
 
 const CreateSpot = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
@@ -19,12 +21,9 @@ const CreateSpot = () => {
     const userId = useSelector(state => state.session.user.id);
     // console.log(typeof userId);
 
-    const spots = useSelector((state) => state.spots.spots);
     const spot = useSelector((state) => state.spots.spot);
+    console.log(spot)
     const isLoading = useSelector((state) => state.spots.isLoading);
-    const isLoaded = useSelector((state) => state.spots.isLoaded);
-    const isError = useSelector((state) => state.spots.isError);
-    const error = useSelector((state) => state.spots.error);
 
     const handleSubmit = (e) => {
         e.preventDefault();

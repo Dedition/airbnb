@@ -10,6 +10,7 @@ import Landing from "./components/LandingFormPage/LandingPage";
 import { Listings } from "./components/SpotsPage/Spot";
 import CreateSpot from "./components/SpotsPage/CreateSpot";
 import DeleteSpot from "./components/SpotsPage/DeleteSpot";
+import Spot from "./components/SpotsPage/Spot";
 
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
           <Route path="/signup"><SignupFormPage /><h2>Sign Up</h2></Route>
           <Route path="/login"><LoginFormPage /><h2>Login</h2></Route>
           <Route path="/profile"><h2>Profile</h2></Route>
-          <Route path="/listings"><h2>Listings</h2><DeleteSpot /><Listings /></Route>
+          <Route path="/listings"><h2>Listings</h2><Spot /><Listings /></Route>
           <Route path="/listing/:id"><h2>Listing</h2></Route>
           <Route path="/add-spot"><CreateSpot /></Route>
           <Route path="*"><h2>Page Not Found</h2></Route>

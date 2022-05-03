@@ -6,7 +6,7 @@ import SpotCard from './SpotCard';
 
 export function Listings({ userId = null }) {
     const dispatch = useDispatch();
-    const spots = useSelector(state => state.spots);
+    const spots = useSelector(state => state.spots.listOfSpots);
     const thunk = userId ? spotActions.getSpotsByUserId(userId) : spotActions.fetchSpots();
 
     useEffect(() => {
