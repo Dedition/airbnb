@@ -7,8 +7,7 @@ import {
 import * as spotActions from "../../store/spots";
 // import { createSpot, updateSpot } from "../../store/spots";
 
-const CreateSpot = ({ edit }) => {
-    console.log(edit)
+const CreateSpot = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -65,7 +64,6 @@ const CreateSpot = ({ edit }) => {
             setPrice(spot.price);
         }
     }, [spot]);
-    //
     return (
         <>
             <div className="app">

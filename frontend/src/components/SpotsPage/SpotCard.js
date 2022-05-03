@@ -33,6 +33,7 @@ const SpotCard = ({ spot }) => {
                     <div className="media-content">
                         <p className="title">{spot.title}</p>
                         <p className="subtitle">{spot.address}</p>
+                        <h3>${spot.price}</h3>
                     </div>
                 </div>
                 <div className="content">

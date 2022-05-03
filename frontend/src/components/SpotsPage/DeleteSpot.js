@@ -10,8 +10,10 @@ const DeleteSpot = ({ spotId }) => {
 
     const handleDelete = async (e) => {
         e.preventDefault();
-        const deletedSpot = await dispatch(spotActions.removeSpot(spotId));
-        if (deletedSpot) return history.push("/listings");
+        if (sessionUser.id === spotId) {
+            const deletedSpot = await dispatch(spotActions.removeSpot(spotId));
+            if (deletedSpot) return history.push("/listings");
+        }
     };
 
     return (

@@ -16,9 +16,8 @@ export function Listings({ userId = null }) {
     return spots.length > 0 ? (
         <div className="row-spot" id='spots-container'>
             {spots.map(spot =>
-                <SpotCard
-                    key={spot.id}
-                    id={`spot-${spot.id}`}
+                <SpotCard key={spot.id}
+                    id={`${spot.id}`}
                     spot={spot}
                     title={spot.title}
                 />)}
