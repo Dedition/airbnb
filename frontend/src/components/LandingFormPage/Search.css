@@ -6,15 +6,6 @@
     z-index: 100;
 }
 
-/* .guest_container {
-    position: absolute;
-    top: 200px;
-    left: 20px;
-    width: 100vw;
-    z-index: 100;
-} */
-
-
 .search>h2 {
     display: flex;
     align-items: center;

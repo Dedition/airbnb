@@ -12,7 +12,6 @@
     margin: none;
 }
 
-/* Align the two buttons side-by-side */
 .profile_button {
     display: flex;
     align-items: center;
@@ -69,8 +68,7 @@
     margin-right: 80px;
 }
 
-*/ .fa-solid {
-    /* background-color: transparent; */
+.fa-solid {
     color: white;
 }
 
