@@ -36,7 +36,7 @@ export const typeInput = ({ type, state, setState, name }) => {
 
     return (
         <FormGroup className='FormInp'>
-            <label htmlFor={formatedType}>{name}</label>
+            <Label htmlFor={formatedType}>{name}</Label>
             <Input
                 type={type || 'text'}
                 id={formatedType}
@@ -54,7 +54,7 @@ export const numInput = ({ min, name, state, setState }) => {
 
     return (
         <FormGroup className='FormInp'>
-            <label htmlFor={formatedType}>{name}</label>
+            <Label htmlFor={formatedType}>{name}</Label>
             <Input className='NumInp'
                 type='number'
                 id={formatedType}
