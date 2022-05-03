@@ -10,7 +10,7 @@ const stateValReg = /^(?:(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEIN
 router.get('/', asyncHandler(async (req, res) => {
     console.log(req);
     const spots = await Spot.findAll();
-    return res.json(spots);
+    return res.json({ spots });
 }));
 
 router.get("/:id", asyncHandler(async (req, res) => {
@@ -21,7 +21,16 @@ router.get("/:id", asyncHandler(async (req, res) => {
 router.post('/', spotValidation.validateCreate, asyncHandler(async (req, res) => {
     const newSpot = await Spot.build(req.body);
     const savedRes = await newSpot.save();
-    return res.json(newSpot);
+    return res.json({ newSpot });
+}));
+
+
+router.delete('/:id', asyncHandler(async (req, res) => {
+    const spotId = await Spot.destroy(req.params.id);
+    if (!spotId) {
+        return res.status(404).json({ message: 'Spot not found' });
+    }
+    return res.json({ spotId });
 }));
 
 module.exports = router;
