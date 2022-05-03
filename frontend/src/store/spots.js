@@ -1,45 +1,31 @@
+import SpotCard from '../components/SpotsPage/SpotCard';
 import { csrfFetch } from './csrf';
 
 export const CREATE_SPOT = 'spots/CREATE_SPOT';
 export const GET_SPOT = 'spots/GET_SPOT';
+export const GET_ALL_SPOTS = 'spots/GET_ALL_SPOTS_BY_USER_ID';
 export const EDIT_SPOT = 'spots/EDIT_SPOT';
 export const DELETE_SPOT = 'spots/DELETE_SPOT';
 
-const createSpot = (spot) => {
-    return {
-        type: CREATE_SPOT,
-        payload: spot,
-    };
-};
+const createSpot = (spot) => ({ type: CREATE_SPOT, payload: spot });
+const getSpots = (spot) => ({ type: GET_SPOT, payload: spot });
+const getAllSpotsByUserId = (spots, userId) => ({ type: GET_ALL_SPOTS, payload: spots, userId });
+const editSpot = (spot) => ({ type: EDIT_SPOT, payload: spot });
+const deleteSpot = (spotId) => ({ type: DELETE_SPOT, spotId });
 
-const getSpots = (spot) => {
-    return {
-        type: GET_SPOT,
-        payload: spot,
-    };
-};
-
-const editSpot = () => {
-    return {
-        type: EDIT_SPOT,
-    };
-};
-
-const deleteSpot = (spotId) => {
-    return {
-        type: DELETE_SPOT,
-        spotId,
-    };
-};
 
 export const createSpotAction = (spot) => async (dispatch) => {
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
-        body: JSON.stringify(spot),
+        headers: { 'Content-Type': 'multipart/form-data' },
+        body: spot
     });
-    const data = await response.json();
-    console.log('============', data);
-    dispatch(createSpot(data));
+    if (response.ok) {
+        const data = await response.json();
+        console.log('============', data);
+        dispatch(createSpot(data));
+        return data;
+    }
     return response;
 };
 
