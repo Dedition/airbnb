@@ -12,6 +12,7 @@ import CreateSpot from "./components/SpotsPage/CreateSpot";
 import DeleteSpot from "./components/SpotsPage/DeleteSpot";
 import Spot from "./components/SpotsPage/Spot";
 import SpotCard from "./components/SpotsPage/SpotCard";
+import Form from "./components/Form/Form";
 
 
 function App() {
