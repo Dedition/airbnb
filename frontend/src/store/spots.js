@@ -90,8 +90,9 @@ export const updateSpot = (spot, spotId) => async (dispatch) => {
 //     }
 // };
 
-export const removeSpot = (spotId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${spotId}`, { method: 'DELETE' });
+export const removeSpot = (id) => async (dispatch) => {
+    console.log(id);
+    const response = await csrfFetch(`/api/spots/${id}`, { method: 'DELETE' });
     // console.log(response);
 
     if (response.ok) {
@@ -128,23 +129,21 @@ const spotReducer = (state = initialState, action) => {
             newState.listOfSpots = spots;
             return newState;
         };
-        case GET_ONE_SPOT: {
-            newState = { ...state, [action.spot.id]: action.spot };
+        case GET_ONE_SPOT:
+            newState = { ...state, [action.payload.id]: action.spot };
             return newState;
-        };
         case EDIT_SPOT: {
             newState = { ...state };
-            const editedSpot = state.listOfSpots.map(spot => spot.id === action.spot.id ? spot = action.spot : spot);
+            const editedSpot = state.listOfSpots.map(spot => spot.id === action.payload.id ? spot = action.payload : spot);
             newState.listOfSpots = editedSpot;
             return newState;
         };
-
-        case DELETE_SPOT: {
+        case DELETE_SPOT:
             newState = { ...state };
-            const deletedSpot = state.listOfSpots.filter(spot => spot.id !== action.spotId);
-            newState.listOfSpots = deletedSpot;
+            delete state[action.payload.id];
+            // const deletedSpot = state.listOfSpots.filter(spot => spot.id !== action.spotId);
+            // newState.listOfSpots = deletedSpot;
             return newState;
-        };
         default:
             return state;
     }

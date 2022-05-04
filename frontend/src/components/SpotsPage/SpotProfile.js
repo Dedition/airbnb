@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import * as spotActions from "../../store/spots";
+import DeleteSpot from "./DeleteSpot";
 // import { spotFormModal } from "../Form/FormModal";
 // import { spotDeleteButton } from "../Form/DeleteButton";
 
@@ -15,12 +16,12 @@ const SpotProfile = () => {
     // console.log(spot.id);
 
     useEffect(() => {
-        dispatch(spotActions.getOneSpot(id));
+        dispatch(spotActions.removeSpot(id));
     }, [dispatch, id]);
 
-    // useEffect(() => {
-    //     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
-    // }, []);
+    useEffect(() => {
+        window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    }, []);
 
     let spotColor;
     if (spot.price > 0 && spot.price <= 100000) spotColor = 'brown';
@@ -42,7 +43,7 @@ const SpotProfile = () => {
     return (
         <div onClick={handleClick} className={`spot-profile ${spotColor}`}>
             <div className='spot-profile'>
-                <SpotHeader property={spot} />
+                <SpotHeader spot={spot} />
                 <div style={{ width: '75%' }} className="line" />
                 {/* <Image spotId={spotId}/>
         <div style={{width:'75%'}} className="line"/> */}
@@ -71,14 +72,14 @@ const SpotHeader = () => {
                 <NavLink to={`/listing/${id}`}>
                     <button className='btn-primary'>View Listing</button>
                 </NavLink>
+                <DeleteSpot id={id} />
             </div>
 
             <div className='spot-header-right'> {sessionUser?.id === spot?.id && (<>
                 <spotFormModal name='Edit spot' edit={true} spot={spot} />
-                <spotDeleteButton spotId={id} />
+                <DeleteSpot id={id} />
             </>)}
             </div>
-
         </div>
     )
 }
