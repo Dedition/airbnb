@@ -20,20 +20,19 @@ function Navigation({ isLoaded }) {
         })
     }, [])
 
-    // const logout = (e) => {
-    //     e.preventDefault();
-    //     dispatch(sessionActions.logout());
-    //     return history.replace('/');
-    //   };
+    const handleLogout = (e) => {
+        e.preventDefault();
+        dispatch(sessionActions.logout());
+        return history.replace('/');
+    };
 
-
-    let sessionLinks = sessionUser ? (
+    const sessionLinks = sessionUser ? (
         <>
             <SpotFormModal />
             <div></div>
             <NavLink to='/profile' className='nav-link'>My Profile</NavLink>
             <div></div>
-            <button className='nav-link' onClick={() => dispatch(sessionActions.logout())}>Logout</button>
+            <button className='nav-link' onClick={handleLogout}>Logout</button>
         </>
     ) : (
         <div>
@@ -49,11 +48,11 @@ function Navigation({ isLoaded }) {
 
     return (
         <div className={`nav-bar ${navStatus}`}>
-            <div className='nav-bar-left'>
+            <div id='nav_bar_left'>
                 <img className='logo' src={process.env.PUBLIC_URL + `/images/svgexport-1.png`} alt='logo' />
             </div>
 
-            <div className='nav-bar-mid'>
+            <div id='nav_bar_mid'>
                 {navStatus === 'nav-top' ? (
                     <>
                         <NavLink className='nav-link' exact to="/">Home</NavLink>
@@ -66,7 +65,7 @@ function Navigation({ isLoaded }) {
                     </>
                 )}
             </div>
-            <div className='nav-bar-right'>
+            <div id='nav_bar_right'>
                 {sessionLinks}
             </div>
         </div>
