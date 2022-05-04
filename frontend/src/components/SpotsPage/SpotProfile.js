@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 import DeleteSpot from "./DeleteSpot";
+import spotFormModal from "./spotFormModal";
+import CreateSpot from "./CreateSpot";
+import "./Spot.css";
 // import { spotFormModal } from "../Form/FormModal";
 // import { spotDeleteButton } from "../Form/DeleteButton";
 
@@ -41,16 +44,16 @@ const SpotProfile = () => {
     const handleClick = () => history.push(`/listing/${spot.id}`);
 
     return (
-        <div onClick={handleClick} className={`spot-profile ${spotColor}`}>
-            <div className='spot-profile'>
-                <SpotHeader spot={spot} />
-                <div style={{ width: '75%' }} className="line" />
-                {/* <Image spotId={spotId}/>
+        // <div onClick={handleClick} className={`spot-profile ${spotColor}`}>
+        <div className='spot-profile'>
+            <SpotHeader spot={spot} />
+            <div style={{ width: '75%' }} className="line" />
+            {/* <Image spotId={spotId}/>
         <div style={{width:'75%'}} className="line"/> */}
-                {/* <Review spotId={spotId} /> */}
-                {/* <div className='filler-box' style={{backgroundColor:'white'}}/> */}
-            </div>
+            {/* <Review spotId={spotId} /> */}
+            {/* <div className='filler-box' style={{backgroundColor:'white'}}/> */}
         </div>
+        // </div>
     );
 }
 
@@ -59,7 +62,7 @@ const SpotHeader = () => {
     const { id } = useParams();
     const spot = useSelector((state) => state.spots.listOfSpots[id]);
     const sessionUser = useSelector(state => state?.session?.user);
-    console.log(sessionUser)
+    w
     return (
         <div className='spot-header row-list'>
 

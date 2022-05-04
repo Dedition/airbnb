@@ -25,6 +25,19 @@ const SpotForm = ({ edit, spot, closeModal }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const formData = new FormData();
+        if (edit) {
+            spot.append("id", spot?.id);
+        }
+        spot.append("address", address);
+        spot.append("city", city);
+        spot.append("state", state);
+        spot.append("country", country);
+        spot.append("name", name);
+        spot.append("price", price);
+
+
+
         if (edit) {
             dispatch(spotActions.updateSpot({
                 userId,
@@ -39,10 +52,12 @@ const SpotForm = ({ edit, spot, closeModal }) => {
             history.push("/listings");
         }
 
-        const updated = await dispatch(spotActions.updateSpot(newForm, spot?.id))
-        if (updated?.errors) {
-            setErrors(updated?.errors);
-            return closeModal();
+        if (edit) {
+            const updated = await dispatch(spotActions.updateSpot(newForm, spot?.id))
+            if (updated?.errors) {
+                setErrors(updated?.errors);
+                return closeModal();
+            }
         }
 
         const created = await dispatch(spotActions.createSpotAction(newForm));
@@ -66,7 +81,7 @@ const SpotForm = ({ edit, spot, closeModal }) => {
         if (country.length < 1) errors.push("Country is required");
         if (name.length < 1) errors.push("Name is required");
         if (price < 1) errors.push("Price is required");
-        setErrors(errors);
+        setValidationErrors(errors);
     }, [address, city, state, country, name, price]);
 
     return (

@@ -14,6 +14,7 @@ import Spot from "./components/SpotsPage/Spot";
 import SpotCard from "./components/SpotsPage/SpotCard";
 import Form from "./components/Form/Form";
 import SpotProfile from "./components/SpotsPage/SpotProfile";
+import ConfirmDelete from "./components/SpotsPage/ConfirmDelete";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/listings"><h2>Listings</h2><Spot /><Listings /><CreateSpot /></Route>
           <Route path="/listing/:id"><h2>Listing</h2><SpotProfile /></Route>
           <Route path="/add-spot"><CreateSpot /></Route>
+          <Route path="/confirmDelete"><ConfirmDelete /></Route>
           <Route path="*"><h2>Page Not Found</h2></Route>
         </Switch>
       )}

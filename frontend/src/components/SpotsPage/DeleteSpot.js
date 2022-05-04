@@ -16,9 +16,6 @@ const DeleteSpot = ({ id }) => {
         history.push("/listings");
     };
 
-
-
-
     return (
         <div>
             <Button color="danger" onClick={handleDelete}>Delete Spot</Button>
