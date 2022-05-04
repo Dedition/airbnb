@@ -1,4 +1,113 @@
 body {
     background-color: white !important;
-    color: black;
+}
+
+#spots-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 1em auto;
+    border-radius: 1em;
+    overflow: auto;
+    white-space: normal;
+}
+
+.spot_page {
+    width: 90%;
+    margin: 0 auto;
+    border: solid #000000 0.1em;
+    border-radius: 1em;
+    padding: 1em;
+    padding-bottom: 0;
+    min-height: calc(100vh - 8em);
+}
+
+.spot-profile-image {
+    height: 3em;
+    border: #000000 solid 0.1em;
+    border-radius: 1em;
+    margin-bottom: 1em;
+    box-shadow: 0 0.05em 0.3em rgb(70, 70, 70);
+    padding: 0 1em;
+}
+
+.spot_header {
+    display: flex;
+    box-shadow: 0 0.05em 0.3em rgb(70, 70, 70);
+    border-radius: 1em;
+    border: solid #000000 0.1em;
+    padding: 1em;
+    margin-bottom: 1em;
+    justify-content: space-between;
+}
+
+.spot_header_right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.spot_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 1em;
+    background-color: white;
+    color: rgb(61, 61, 61);
+    border: solid #000000 0.1em;
+    padding: 1em;
+    margin: 1em;
+    cursor: pointer;
+    height: 20em;
+    width: 15em;
+}
+
+.spot_card:hover {
+    box-shadow: 0 0.05em 0.3em rgb(70, 70, 70);
+    border: 0.1em solid rgb(61, 61, 61);
+    transform: translate3d(0, -0.1em, 0);
+}
+
+.spot_card>h2 {
+    font-size: 1.2em;
+}
+
+.spot-card>* {
+    margin-bottom: 1em;
+}
+
+.spot_color_profile {
+    border: 0.1em solid #000000;
+    border-radius: 0.5em;
+    min-height: 4em;
+    width: 15em;
+}
+
+.card_image {
+    height: 50%;
+    width: 100%;
+    border: 0.1em solid black;
+    border-radius: 0.5em;
+    opacity: 80%;
+    object-fit: cover;
+}
+
+.card_content {
+    justify-content: space-between;
+    width: 80%;
+}
+
+.create_spot_form_modal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.create_spot_form_modal input {
+    width: 90%;
+}
+
+.create_property_form_modal>* {
+    width: 50%
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Banner.css';
 import Search from './Search';
+import { Button } from 'reactstrap';
 
 function Banner() {
     const [showSearch, setShowSearch] = useState(false);
@@ -10,9 +11,10 @@ function Banner() {
         <div className='banner' id='head_banner'>
             <div className='banner_search'>
                 {showSearch && <Search />}
-                <button onClick={() => setShowSearch(!showSearch)} className='banner_searchbutton'>
-                    SEARCH DATES
-                </button>
+                <Button color='primary' onClick={() => setShowSearch(!showSearch)}
+                    className='banner_searchButton'
+                    variant='outlined'>Search Dates</Button>
+
             </div>
             <div className='banner_container'>
 

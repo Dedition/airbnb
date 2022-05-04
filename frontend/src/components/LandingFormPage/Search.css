@@ -1,35 +1,26 @@
 .search {
     position: absolute;
-    top: 200px;
-    left: 25%;
+    top: 150px;
+    left: 20%;
     width: 100vw;
     z-index: 100;
 }
 
-.search>h2 {
+.dateBtn>h2 {
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+#dateInput {
     display: flex;
+    flex-direction: column-reverse;
     align-items: center;
-    justify-content: space-between;
-    width: 559px;
-    padding: 10px;
-    background-color: black;
-    position: absolute;
-    left: 0;
-    top: 303px;
-    z-index: 100;
+    justify-content: center;
+    height: 100%;
+    border-radius: 12px;
+    margin-top: 0%;
 }
 
-.search>input {
-    width: 539px;
-    padding: 20px;
-    position: absolute;
-    left: 0;
-    height: 30px;
-    top: 420px;
-    border: none;
-    z-index: 100;
-}
-
-.search>input:focus {
-    outline: none;
+input:focus {
+    outline-width: none;
 }

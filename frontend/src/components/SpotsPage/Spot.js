@@ -6,46 +6,30 @@ import SpotCard from './SpotCard';
 
 export function Listings({ userId = null }) {
     const dispatch = useDispatch();
-    const spots = useSelector(state => state.spots);
+    const spotsObj = useSelector(state => state.spots);
     const thunk = userId ? spotActions.getSpotsByUserId(userId) : spotActions.fetchSpots();
-    return (
-        <div>
-            <ul>
-                {Object.values(spots).map((spot) => (
-                    <li key={spot.id}>{spot.address}</li>
+
+    const spots = Object.values(spotsObj);
+
+    useEffect(() => {
+        dispatch(thunk);
+    }, [dispatch]);
+
+    return spots.length > 0 ? (
+        <div className="row-spot" id='spots-container'>
+            {
+                spots.map(spot => (
+                    <SpotCard key={spot.id}
+                        id={`${spot.id}`}
+                        spot={spot}
+                        title={spot.title}
+                    />
                 ))}
-            </ul>
-        </div>
+        </div >
+    ) : (
+        <h2 style={{ marginBottom: '10px' }}>Sorry, we couldn't find any listings for you! :( (Unless you deleted them all, then you're a big meanie) </h2>
     );
 }
 
 
-// import PropertyCard from './PropertyCard';
-// // todo ——————————————————————————————————————————————————————————————————————————————————
-
-// const PropertyList = ({userId = null}) => {
-//   const dispatch = useDispatch();
-
-//   const properties = useSelector(state => state.property.listOfProperties);
-
-//   const thunk = userId ? getPropertiesByUserId(userId) : getProperties();
-
-//   useEffect(() => {dispatch(thunk)}, [dispatch]);
-
-//   return properties.length > 0 ? (
-//     <div className='row-list' id='properties-container'>
-//       {properties.map(property => (
-//         <PropertyCard
-//           key={property.id}
-//           id={`property-${property.id}`}
-//           title={property.title}
-//           property={property}
-//         />
-//       ))}
-//     </div>
-//   ) : (
-//     <h3 style={{marginBottom: '10px'}}>No Listings yet... why not start now?</h3>
-//   );
-// };
-
-// export default PropertyList;
+export default Listings;
