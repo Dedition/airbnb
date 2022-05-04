@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
-import { SpotForm } from './SpotForm';
+import SpotForm from './SpotForm';
 import { Button } from 'reactstrap';
 
 // import { Button } from 'reactstrap';

@@ -67,7 +67,7 @@ const SpotForm = ({ edit, spot, closeModal }) => {
 
     return (
         <NewForm onSub={handleSubmit} validationErrors={validationErrors} errors={errors} btnName={edit ? 'Update' : 'Host Your Spot'}>
-            <div className={edit ? '' : 'create-spot-form'}>
+            <div className={edit ? '' : 'create_spot_form_modal'}>
                 <TypeInput name='Address' value={address} onChange={e => setAddress(e.target.value)} />
                 <TypeInput name='City' value={city} onChange={e => setCity(e.target.value)} />
                 <TypeInput name='State' value={state} onChange={e => setState(e.target.value)} />

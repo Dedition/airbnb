@@ -45,15 +45,16 @@ const SpotProfile = () => {
 
     return (
         // <div onClick={handleClick} className={`spot-profile ${spotColor}`}>
-        <div className='spot-profile'>
-            <SpotHeader spot={spot} />
-            <div style={{ width: '75%' }} className="line" />
-            {/* <Image spotId={spotId}/>
+        <div className={`spot_page ${spotColor}`}>
+            <div className='spot-profile-image' id={spotColor}>
+                <SpotHeader spot={spot} />
+                <div style={{ width: '75%' }} className="line" />
+                {/* <Image spotId={spotId}/>
         <div style={{width:'75%'}} className="line"/> */}
-            {/* <Review spotId={spotId} /> */}
-            {/* <div className='filler-box' style={{backgroundColor:'white'}}/> */}
+                {/* <Review spotId={spotId} /> */}
+                {/* <div className='filler-box' style={{backgroundColor:'white'}}/> */}
+            </div>
         </div>
-        // </div>
     );
 }
 
@@ -64,9 +65,9 @@ const SpotHeader = () => {
     const sessionUser = useSelector(state => state?.session?.user);
 
     return (
-        <div className='spot-header row-list'>
+        <div className='spot_header row-list'>
 
-            <div className='spot-header-left'>
+            <div className='spot_header_left'>
                 <h1>{spot?.title}</h1>
                 <h3>{`${spot?.city}, ${spot?.state}`}</h3>
 
@@ -78,7 +79,7 @@ const SpotHeader = () => {
                 <DeleteSpot id={id} />
             </div>
 
-            <div className='spot-header-right'> {sessionUser?.id === spot?.id && (<>
+            <div className='spot_header_right'> {sessionUser?.id === spot?.id && (<>
                 <spotFormModal name='Edit spot' edit={true} spot={spot} />
                 <DeleteSpot id={id} />
             </>)}

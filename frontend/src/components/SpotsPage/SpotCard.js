@@ -22,18 +22,20 @@ const SpotCard = ({ spot }) => {
     const handleClick = () => history.push(`/listing/${spot.id}`);
 
     return (
-        <div className="card" style={{ backgroundColor: spotColor }} onClick={handleClick}>
+        <div className="spot_card" style={{ backgroundColor: spotColor }} onClick={handleClick}>
+            <div className="spot_color_profile" id={spotColor} />
+            <h2 className='spot_title'>{spot.title}</h2>
             <div className="card-content">
                 <div className="media">
                     <div className="media-left">
                         <figure className="48x48">
-                            {/* <img src={spot.image} alt="Placeholder image" /> */}
+                            <img className="card_image" src={spot.image} alt="Placeholder" />
                         </figure>
                     </div>
-                    <div className="media-content">
-                        <p className="title">{spot.title}</p>
+                    <div className="card_content">
+                        <p className="title">{spot.city}</p>
                         <p className="subtitle">{spot.address}</p>
-                        <h3>${spot.price}</h3>
+                        <h3>${spot.price}/night</h3>
                     </div>
                 </div>
                 <div className="content">
