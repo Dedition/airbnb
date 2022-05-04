@@ -6,14 +6,14 @@ import { Button } from "reactstrap";
 const DeleteSpot = ({ id }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const sessionUser = useSelector(state => state.session.user);
-    const spot = useSelector((state) => state.spots.listOfSpots.find(spot => spot.id === id));
-    console.log(spot)
+    console.log(id)
+    // const spot = useSelector((state) => state.spots.listOfSpots.find(spot => spot.id === id));
+    // const sessionUser = useSelector(state => state.session.user);
+
     const handleDelete = async (e) => {
         e.preventDefault();
-
-        await dispatch(spotActions.removeSpot(id));
-        history.push("/listings");
+        const deletedSpot = await dispatch(spotActions.removeSpot(id));
+        if (deletedSpot) return history.push("/listings");
     };
 
     return (

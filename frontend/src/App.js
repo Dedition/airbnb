@@ -7,15 +7,11 @@ import * as spotActions from "./store/spots";
 import Navigation from "./components/Navigation";
 import LoginFormPage from "./components/LoginFormPage";
 import Landing from "./components/LandingFormPage/LandingPage";
-import { Listings } from "./components/SpotsPage/Spot";
+import Listings from "./components/SpotsPage/Spot";
 import CreateSpot from "./components/SpotsPage/CreateSpot";
-import DeleteSpot from "./components/SpotsPage/DeleteSpot";
 import Spot from "./components/SpotsPage/Spot";
-import SpotCard from "./components/SpotsPage/SpotCard";
-import Form from "./components/Form/Form";
 import SpotProfile from "./components/SpotsPage/SpotProfile";
 import ConfirmDelete from "./components/SpotsPage/ConfirmDelete";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +33,7 @@ function App() {
           <Route path="/signup"><SignupFormPage /><h2>Sign Up</h2></Route>
           <Route path="/login"><LoginFormPage /><h2>Login</h2></Route>
           <Route path="/profile"><h2>Profile</h2></Route>
-          <Route path="/listings"><h2>Listings</h2><Spot /><Listings /><CreateSpot /></Route>
+          <Route path="/listings"><h2>Listings</h2><Listings /></Route>
           <Route path="/listing/:id"><h2>Listing</h2><SpotProfile /></Route>
           <Route path="/add-spot"><CreateSpot /></Route>
           <Route path="/confirmDelete"><ConfirmDelete /></Route>

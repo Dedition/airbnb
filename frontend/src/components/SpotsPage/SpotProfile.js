@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 import DeleteSpot from "./DeleteSpot";
-import spotFormModal from "./spotFormModal";
-import CreateSpot from "./CreateSpot";
+// import spotFormModal from "./spotFormModal";
+// import CreateSpot from "./CreateSpot";
 import "./Spot.css";
 // import { spotFormModal } from "../Form/FormModal";
 // import { spotDeleteButton } from "../Form/DeleteButton";
@@ -62,7 +62,7 @@ const SpotHeader = () => {
     const { id } = useParams();
     const spot = useSelector((state) => state.spots.listOfSpots[id]);
     const sessionUser = useSelector(state => state?.session?.user);
-    w
+
     return (
         <div className='spot-header row-list'>
 

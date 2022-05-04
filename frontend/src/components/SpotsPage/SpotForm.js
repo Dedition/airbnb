@@ -2,8 +2,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import * as spotActions from "../../store/spots";
-import { Form } from "reactstrap";
-import { newForm, typeInput, numInput } from "../Form/Form";
+import { NewForm, TypeInput, NumInput } from "../Form/Form.js";
 
 const SpotForm = ({ edit, spot, closeModal }) => {
     const dispatch = useDispatch();
@@ -26,51 +25,33 @@ const SpotForm = ({ edit, spot, closeModal }) => {
         e.preventDefault();
 
         const formData = new FormData();
-        if (edit) {
-            spot.append("id", spot?.id);
-        }
-        spot.append("address", address);
-        spot.append("city", city);
-        spot.append("state", state);
-        spot.append("country", country);
-        spot.append("name", name);
-        spot.append("price", price);
-
-
 
         if (edit) {
-            dispatch(spotActions.updateSpot({
-                userId,
-                address,
-                city,
-                state,
-                country,
-                name,
-                price
-            }));
-
-            history.push("/listings");
+            formData.append("id", spot?.id);
         }
+        formData.append('userId', userId);
+        formData.append("address", address);
+        formData.append("city", city);
+        formData.append("state", state);
+        formData.append("country", country);
+        formData.append("name", name);
+        formData.append("price", price);
+
 
         if (edit) {
-            const updated = await dispatch(spotActions.updateSpot(newForm, spot?.id))
-            if (updated?.errors) {
-                setErrors(updated?.errors);
-                return closeModal();
-            }
-        }
-
-        const created = await dispatch(spotActions.createSpotAction(newForm));
-
-        if (created?.errors) {
-            setErrors(created?.errors);
+            const updated = await dispatch(spotActions.updateSpot(formData, spot?.id))
+            if (updated?.errors) setErrors(updated?.errors);
             return closeModal();
         }
+
+        const created = await dispatch(spotActions.createSpotAction(formData));
+
+        if (created?.errors) setErrors(created?.errors);
         if (created?.id) {
-            history.push("/listings");
+            history.push("/listing/" + created?.id);
             return closeModal();
         }
-        return 'Failed to Create';
+        return 'Oops. Something went wrong. :( ';
     };
 
     useEffect(() => {
@@ -85,20 +66,19 @@ const SpotForm = ({ edit, spot, closeModal }) => {
     }, [address, city, state, country, name, price]);
 
     return (
-        <newForm onSub={handleSubmit} validationErrors={validationErrors} errors={errors}
-            btnName={edit ? 'Update' : 'Host Your Spot'}>
+        <NewForm onSub={handleSubmit} validationErrors={validationErrors} errors={errors} btnName={edit ? 'Update' : 'Host Your Spot'}>
             <div className={edit ? '' : 'create-spot-form'}>
-                <typeInput name='Address' value={address} onChange={e => setAddress(e.target.value)} />
-                <typeInput name='City' value={city} onChange={e => setCity(e.target.value)} />
-                <typeInput name='State' value={state} onChange={e => setState(e.target.value)} />
-                <typeInput name='Country' value={country} onChange={e => setCountry(e.target.value)} />
-                <typeInput name='Name' value={name} onChange={e => setName(e.target.value)} />
-                <numInput name='Price' value={price} onChange={e => setPrice(e.target.value)} />
+                <TypeInput name='Address' value={address} onChange={e => setAddress(e.target.value)} />
+                <TypeInput name='City' value={city} onChange={e => setCity(e.target.value)} />
+                <TypeInput name='State' value={state} onChange={e => setState(e.target.value)} />
+                <TypeInput name='Country' value={country} onChange={e => setCountry(e.target.value)} />
+                <TypeInput name='Name' value={name} onChange={e => setName(e.target.value)} />
+                <NumInput name='Price' value={price} onChange={e => setPrice(e.target.value)} />
             </div>
 
-            <input styles={{ display: 'none' }} type="submit" value="Submit" />
+            <input styles={{ cursor: 'pointer' }} type="submit" value="Submit" />
             <img id="close-modal" src="https://img.icons8.com/ios/50/000000/cancel.png" alt="close" onClick={closeModal} />
-        </newForm>
+        </NewForm>
     )
 };
 

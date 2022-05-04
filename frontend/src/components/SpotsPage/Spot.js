@@ -15,13 +15,15 @@ export function Listings({ userId = null }) {
 
     return spots.length > 0 ? (
         <div className="row-spot" id='spots-container'>
-            {spots.map(spot =>
-                <SpotCard key={spot.id}
-                    id={`${spot.id}`}
-                    spot={spot}
-                    title={spot.title}
-                />)}
-        </div>
+            {
+                spots.map(spot => (
+                    <SpotCard key={spot.id}
+                        id={`${spot.id}`}
+                        spot={spot}
+                        title={spot.title}
+                    />
+                ))}
+        </div >
     ) : (
         <h2 style={{ marginBottom: '10px' }}>Why don't you take a trip of a lifetime?</h2>
     );

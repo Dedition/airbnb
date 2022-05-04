@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 // import reactstrap form
 import { Form, FormGroup, Label, Input, Button, ButtonGroup } from 'reactstrap';
 
-export const newForm = ({ onSub, validationErrors, errors, btnName, children }) => (
+export const NewForm = ({ onSub, validationErrors, errors, btnName, children }) => (
     <>
         <Form className='column-listing' onSubmit={onSub}>
             {children}
-            <Button className='form-btn' type='submit' disabled={validationErrors.length > 0}>{btnName}</Button>
+            <Button className='form-button' type='submit' disabled={validationErrors.length > 0}>{btnName}</Button>
         </Form>
 
         {validationErrors.length > 0 && (<>
@@ -31,15 +31,15 @@ export const newForm = ({ onSub, validationErrors, errors, btnName, children }) 
     </>
 )
 
-export const typeInput = ({ type, state, setState, name }) => {
-    const formatedType = type.charAt(0).toUpperCase() + type.slice(1);
+export const TypeInput = ({ type, state, setState, name }) => {
+    const formattedType = name.charAt(0).toUpperCase() + name.slice(1);
 
     return (
         <FormGroup className='FormInp'>
-            <Label htmlFor={formatedType}>{name}</Label>
+            <Label htmlFor={formattedType}>{name}</Label>
             <Input
                 type={type || 'text'}
-                id={formatedType}
+                id={formattedType}
                 value={state}
                 onChange={(e) => setState(e.target.value)}
                 placeholder={`Enter ${name}`}
@@ -49,15 +49,15 @@ export const typeInput = ({ type, state, setState, name }) => {
     )
 }
 
-export const numInput = ({ min, name, state, setState }) => {
-    const formatedType = name.charAt(0).toUpperCase() + name.slice(1);
+export const NumInput = ({ min, name, state, setState }) => {
+    const formattedType = name.charAt(0).toUpperCase() + name.slice(1);
 
     return (
         <FormGroup className='FormInp'>
-            <Label htmlFor={formatedType}>{name}</Label>
-            <Input className='NumInp'
+            <Label htmlFor={formattedType}>{name}</Label>
+            <Input className='inputField'
                 type='number'
-                id={formatedType}
+                id={formattedType}
                 value={state}
                 onChange={(e) => setState(e.target.value)}
                 placeholder={`Enter ${name}`}
