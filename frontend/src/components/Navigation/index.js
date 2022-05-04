@@ -48,13 +48,17 @@ function Navigation({ isLoaded }) {
 
     return (
         <div className={`nav-bar ${navStatus}`}>
-            <div id='nav_bar_left'>
-                <img className='logo' src={process.env.PUBLIC_URL + `/images/svgexport-1.png`} alt='logo' />
-            </div>
 
             <div id='nav_bar_mid'>
                 {navStatus === 'nav-top' ? (
                     <>
+                        <div id='nav_bar_left'>
+                            <img className='logo' src={process.env.PUBLIC_URL + `/images/svgexport-1.png`} alt='logo' />
+                        </div>
+                        <div className='header_center'>
+                            <input type="text" />
+                            <i className="fa-solid fa-magnifying-glass" />
+                        </div>
                         <NavLink className='nav-link' exact to="/">Home</NavLink>
                         <NavLink className='nav-link' to="/listings">Listings</NavLink>
                         <NavLink className='nav-link' to="/add-spot">Add Spot</NavLink>
