@@ -50,10 +50,7 @@ function Navigation({ isLoaded }) {
     return (
         <div className={`nav-bar ${navStatus}`}>
             <div className='nav-bar-left'>
-                <NavLink className='row-list' exact to="/">
-                    <img className='logo' src='https://i.imgur.com/XqQZQZL.png' alt='logo' />
-                    Airbnb
-                </NavLink>
+                <img className='logo' src={process.env.PUBLIC_URL + `/images/svgexport-1.png`} alt='logo' />
             </div>
 
             <div className='nav-bar-mid'>

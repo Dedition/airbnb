@@ -68,12 +68,12 @@ const SpotForm = ({ edit, spot, closeModal }) => {
     return (
         <NewForm onSub={handleSubmit} validationErrors={validationErrors} errors={errors} btnName={edit ? 'Update' : 'Host Your Spot'}>
             <div className={edit ? '' : 'create_spot_form_modal'}>
-                <TypeInput name='Address' value={address} onChange={e => setAddress(e.target.value)} />
-                <TypeInput name='City' value={city} onChange={e => setCity(e.target.value)} />
-                <TypeInput name='State' value={state} onChange={e => setState(e.target.value)} />
-                <TypeInput name='Country' value={country} onChange={e => setCountry(e.target.value)} />
-                <TypeInput name='Name' value={name} onChange={e => setName(e.target.value)} />
-                <NumInput name='Price' value={price} onChange={e => setPrice(e.target.value)} />
+                <TypeInput name='Address' value={address} onChange={e => setState(setAddress)} />
+                <TypeInput name='City' value={city} onChange={e => setState(setCity)} />
+                <TypeInput name='State' value={state} onChange={e => setState(setState)} />
+                <TypeInput name='Country' value={country} onChange={e => setState(setCountry)} />
+                <TypeInput name='Name' value={name} onChange={e => setState(setName)} />
+                <NumInput name='Price' value={price} onChange={e => setState(setPrice)} />
             </div>
 
             <input styles={{ cursor: 'pointer' }} type="submit" value="Submit" />

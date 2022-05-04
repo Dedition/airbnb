@@ -96,9 +96,10 @@ export const removeSpot = (id) => async (dispatch) => {
     // console.log(response);
 
     if (response.ok) {
-        const spotId = await response.json();
-        dispatch(deleteSpot(spotId));
-        return spotId;
+        // const spotId = await response.json();
+        // dispatch(deleteSpot(spotId));
+        dispatch(deleteSpot(id))
+        return id;
     }
     return response;
 };
@@ -120,15 +121,11 @@ const spotReducer = (state = initialState, action) => {
             return newState;
         }
         case GET_SPOT:
-        case GET_ALL_SPOTS_BY_USER_ID: {
-            newState = { ...state };
-            const spots = [];
-            // console.log('action.payload', action.payload);
-
-            action.payload.forEach(spot => spots.push(spot));
-            newState.listOfSpots = spots;
+        case GET_ALL_SPOTS_BY_USER_ID:
+            newState = {};
+            action.payload.forEach(spot => newState[spot.id] = spot)
             return newState;
-        };
+        // console.log('action.payload', action.payload);
         case GET_ONE_SPOT:
             newState = { ...state, [action.payload.id]: action.spot };
             return newState;
@@ -140,7 +137,7 @@ const spotReducer = (state = initialState, action) => {
         };
         case DELETE_SPOT:
             newState = { ...state };
-            delete newState[action.payload.id];
+            delete newState[action.spotId];
             // const deletedSpot = state.listOfSpots.filter(spot => spot.id !== action.spotId);
             // newState.listOfSpots = deletedSpot;
             return newState;
