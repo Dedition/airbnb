@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import SpotForm from './SpotForm';
-import { Button } from 'reactstrap';
 
 // import { Button } from 'reactstrap';
 
@@ -10,7 +9,7 @@ const SpotFormModal = ({ name = 'Become a Host', edit = false, spot = null }) =>
 
     return (
         <div>
-            <Button className={edit ? 'edit' : ''} color="primary" onClick={() => setShowModal(true)}>{name}</Button>
+            <button className={edit ? 'edit' : ''} color="primary" onClick={() => setShowModal(true)}>{name}</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <SpotForm edit={edit} spot={spot} closeModal={() => setShowModal(false)} />

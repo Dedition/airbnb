@@ -13,7 +13,7 @@ const SpotForm = ({ edit, spot, closeModal }) => {
     const [state, setState] = useState(edit ? spot?.state : "");
     const [country, setCountry] = useState(edit ? spot?.country : "");
     const [name, setName] = useState(edit ? spot?.name : "");
-    const [price, setPrice] = useState(edit ? spot?.price : 0);
+    const [price, setPrice] = useState(edit ? spot?.price : "");
     const [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([]);
 
@@ -48,7 +48,7 @@ const SpotForm = ({ edit, spot, closeModal }) => {
 
         if (created?.errors) setErrors(created?.errors);
         if (created?.id) {
-            history.push("/listing/" + created?.id);
+            history.push("/listings/" + created?.id);
             return closeModal();
         }
         return 'Oops. Something went wrong. :( ';
@@ -66,14 +66,16 @@ const SpotForm = ({ edit, spot, closeModal }) => {
     }, [address, city, state, country, name, price]);
 
     return (
-        <NewForm onSub={handleSubmit} validationErrors={validationErrors} errors={errors} btnName={edit ? 'Update' : 'Host Your Spot'}>
+        <NewForm onSub={handleSubmit} validationErrors={validationErrors} errors={errors} buttonName={edit ? 'Update' : 'Host Your Spot'}>
             <div className={edit ? '' : 'create_spot_form_modal'}>
-                <TypeInput name='Address' value={address} onChange={e => setState(setAddress)} />
-                <TypeInput name='City' value={city} onChange={e => setState(setCity)} />
-                <TypeInput name='State' value={state} onChange={e => setState(setState)} />
-                <TypeInput name='Country' value={country} onChange={e => setState(setCountry)} />
-                <TypeInput name='Name' value={name} onChange={e => setState(setName)} />
-                <NumInput name='Price' value={price} onChange={e => setState(setPrice)} />
+                <div>
+                    <TypeInput name='Address' value={address} setState={setAddress} />
+                    <TypeInput name='City' value={city} setState={setCity} />
+                    <TypeInput name='State' value={state} setState={setState} />
+                    <TypeInput name='Country' value={country} setState={setCountry} />
+                    <TypeInput name='Name' value={name} setState={setName} />
+                    <NumInput name='Price' value={price} setState={setPrice} />
+                </div>
             </div>
 
             <input styles={{ cursor: 'pointer' }} type="submit" value="Submit" />

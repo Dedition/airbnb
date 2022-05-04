@@ -90,12 +90,10 @@ const SpotHeader = () => {
                 <NavLink to={`/listing/${id}`}>
                     <button className='btn-primary'>View Listing</button>
                 </NavLink>
-                {/* <DeleteSpot id={id} /> */}
-                <button onClick={handleDelete}>Delete Spot</button>
             </div>
 
             <div className='spot_header_right'> {sessionUser?.id === spot?.id && (<>
-                <spotFormModal name='Edit spot' edit={true} spot={spot} />
+                <spotFormModal name='Edit Spot' edit={true} spot={spot} />
                 <button onClick={handleDelete}>Delete Spot</button>
                 {/* <DeleteSpot id={id} /> */}
             </>)}

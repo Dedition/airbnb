@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 // import reactstrap form
 import { Form, FormGroup, Label, Input, Button, ButtonGroup } from 'reactstrap';
 
-export const NewForm = ({ onSub, validationErrors, errors, btnName, children }) => (
+export const NewForm = ({ onSub, validationErrors, errors, buttonName, children }) => (
     <>
         <Form className='column-listing' onSubmit={onSub}>
             {children}
-            <Button className='form-button' type='submit' disabled={validationErrors.length > 0}>{btnName}</Button>
+            <Button className='form-button' type='submit' disabled={validationErrors.length > 0}>{buttonName}</Button>
         </Form>
 
         {validationErrors.length > 0 && (<>

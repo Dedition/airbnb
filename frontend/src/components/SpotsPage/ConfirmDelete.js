@@ -7,7 +7,7 @@ const ConfirmDelete = () => {
 
     return (
         <div>
-            <div>Deleted!</div>
+            <div>This has been successfully deleted</div>
             <NavLink to='/'>Home</NavLink>
             <NavLink to={`/users/${userId}`}>My Page</NavLink>
         </div>

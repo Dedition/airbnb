@@ -27,7 +27,7 @@ export function Listings({ userId = null }) {
                 ))}
         </div >
     ) : (
-        <h2 style={{ marginBottom: '10px' }}>Why don't you take a trip of a lifetime?</h2>
+        <h2 style={{ marginBottom: '10px' }}>Sorry, we couldn't find any listings for you! :( (Unless you deleted them all, then you're a big meanie) </h2>
     );
 }
 

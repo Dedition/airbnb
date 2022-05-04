@@ -12,6 +12,7 @@ import CreateSpot from "./components/SpotsPage/CreateSpot";
 import Spot from "./components/SpotsPage/Spot";
 import SpotProfile from "./components/SpotsPage/SpotProfile";
 import ConfirmDelete from "./components/SpotsPage/ConfirmDelete";
+import SpotForm from "./components/SpotsPage/SpotForm";
 
 function App() {
   const dispatch = useDispatch();
