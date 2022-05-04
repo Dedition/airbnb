@@ -9,12 +9,14 @@ import * as spotActions from "../../store/spots";
 const SpotProfile = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { spotId } = useParams();
-    const spot = useSelector((state) => state?.spots[spotId]);
+    const { id } = useParams();
+    const spot = useSelector((state) => state.spots.listOfSpots[id]);
+    // console.log(spot);
+    // console.log(spot.id);
 
     useEffect(() => {
-        dispatch(spotActions.getOneSpot(spotId));
-    }, [dispatch, spotId]);
+        dispatch(spotActions.getOneSpot(id));
+    }, [dispatch, id]);
 
     // useEffect(() => {
     //     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
@@ -52,10 +54,11 @@ const SpotProfile = () => {
 }
 
 
-const SpotHeader = ({ spot }) => {
-    const { spotId } = useParams();
+const SpotHeader = () => {
+    const { id } = useParams();
+    const spot = useSelector((state) => state.spots.listOfSpots[id]);
     const sessionUser = useSelector(state => state?.session?.user);
-
+    console.log(sessionUser)
     return (
         <div className='spot-header row-list'>
 
@@ -65,14 +68,14 @@ const SpotHeader = ({ spot }) => {
 
                 <div style={{ width: '14em', margin: 0 }} className="line" />
 
-                <NavLink to={`/listing/${spotId}`}>
+                <NavLink to={`/listing/${id}`}>
                     <button className='btn-primary'>View Listing</button>
                 </NavLink>
             </div>
 
-            <div className='spot-header-right'> {sessionUser?.id === spot?.spotId && (<>
+            <div className='spot-header-right'> {sessionUser?.id === spot?.id && (<>
                 <spotFormModal name='Edit spot' edit={true} spot={spot} />
-                <spotDeleteButton spotId={spotId} />
+                <spotDeleteButton spotId={id} />
             </>)}
             </div>
 
