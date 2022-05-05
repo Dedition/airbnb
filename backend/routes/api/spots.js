@@ -13,6 +13,16 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json({ spots });
 }));
 
+router.put('/listing/:id', asyncHandler(async (req, res) => {
+    const { errors, isValid } = spotValidation(req.body);
+    if (!isValid) {
+        return res.status(400).json({ errors });
+    }
+    const { address, city, state, country, name, price } = req.body;
+    const spot = await Spot.update({ address, city, state, country, name, price });
+    return res.json(spot);
+}));
+
 router.get("/:id", asyncHandler(async (req, res) => {
     const spotId = await Spot.findOne(req.params.id);
     return res.json({ spotId });

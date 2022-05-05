@@ -68,7 +68,7 @@ export const updateSpot = (spot, spotId) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: spot
+        body: JSON.stringify(spot)
     });
     if (response.ok) {
         const updatedSpot = await response.json();
@@ -116,14 +116,14 @@ const spotReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case CREATE_SPOT: {
-            newState = { ...state, listOfSpots: [...state.listOfSpots] };
+            // newState = { ...state, listOfSpots: [...state.listOfSpots] };
             newState.listOfSpots.unshift(action.spot);
             return newState;
         }
         case GET_SPOT:
         case GET_ALL_SPOTS_BY_USER_ID:
             newState = {};
-            action.payload.forEach(spot => newState[spot.id] = spot)
+            action.payload.spots.forEach(spot => newState[spot.id] = spot)
             return newState;
         // console.log('action.payload', action.payload);
         case GET_ONE_SPOT:

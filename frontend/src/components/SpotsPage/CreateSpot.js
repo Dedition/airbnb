@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
     Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input, Label, Row
 } from "reactstrap";
@@ -24,6 +24,7 @@ const CreateSpot = () => {
     const spot = useSelector((state) => state.spots.spot);
     // console.log(spot)
     const isLoading = useSelector((state) => state.spots.isLoading);
+    console.log(isLoading)
 
     const handleSubmit = (e) => {
         e.preventDefault();
