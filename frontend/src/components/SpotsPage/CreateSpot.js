@@ -19,18 +19,17 @@ const CreateSpot = () => {
     const [price, setPrice] = useState(0);
 
     const userId = useSelector(state => state.session.user.id);
-    // console.log(typeof userId);
+    console.log(typeof userId, userId);
 
     const spot = useSelector((state) => state.spots.spot);
     // console.log(spot)
     const isLoading = useSelector((state) => state.spots.isLoading);
-    console.log(isLoading)
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         dispatch(spotActions.createSpotAction({
-            userId,
+            userId: userId,
             address,
             city,
             state,
@@ -45,6 +44,7 @@ const CreateSpot = () => {
     const handleUpdate = (e) => {
         e.preventDefault();
         dispatch(spotActions.updateSpot({
+            userId,
             address,
             city,
             state,

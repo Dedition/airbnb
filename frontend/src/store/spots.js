@@ -24,15 +24,14 @@ export const createSpotAction = (spot) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        // console.log('============', data);
         dispatch(createSpot(data));
         return data;
     }
-    return response;
+    throw new Error('Something went wrong!');
 };
 
 export const fetchSpots = () => async (dispatch) => {
-    const response = await csrfFetch('/api/spots', { method: 'GET' });
+    const response = await csrfFetch('/api/spots/', { method: 'GET' });
 
     if (response.ok) {
         const data = await response.json();
@@ -65,18 +64,21 @@ export const getOneSpot = (spotId) => async (dispatch) => {
 };
 
 export const updateSpot = (spot, spotId) => async (dispatch) => {
+    console.log('spot', spot);
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
     });
     if (response.ok) {
+        console.log('===========================', response);
         const updatedSpot = await response.json();
         dispatch(editSpot(updatedSpot));
         return updatedSpot;
     }
     return response;
 };
+
 // method: 'PUT',
 // body: JSON.stringify(spot),
 
@@ -116,7 +118,9 @@ const spotReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case CREATE_SPOT: {
-            // newState = { ...state, listOfSpots: [...state.listOfSpots] };
+            newState = { ...state, listOfSpots: [...state.listOfSpots] };
+            // console.log('HELLLLOOOOOOOO', action.payload);
+            // console.log('HELLLLOOOOOOOO', action.newState);
             newState.listOfSpots.unshift(action.spot);
             return newState;
         }
@@ -131,7 +135,7 @@ const spotReducer = (state = initialState, action) => {
             return newState;
         case EDIT_SPOT: {
             newState = { ...state };
-            const editedSpot = state.listOfSpots.map(spot => spot.id === action.payload.id ? spot = action.payload : spot);
+            const editedSpot = state.listOfSpots.map(spot => spot?.id === action?.payload?.id ? spot = action?.payload : spot);
             newState.listOfSpots = editedSpot;
             return newState;
         };
