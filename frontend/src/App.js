@@ -3,16 +3,16 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
-import * as spotActions from "./store/spots";
+// import * as spotActions from "./store/spots";
 import Navigation from "./components/Navigation";
 import LoginFormPage from "./components/LoginFormPage";
 import Landing from "./components/LandingFormPage/LandingPage";
 import Listings from "./components/SpotsPage/Spot";
 import CreateSpot from "./components/SpotsPage/CreateSpot";
-import Spot from "./components/SpotsPage/Spot";
+// import Spot from "./components/SpotsPage/Spot";
 import SpotProfile from "./components/SpotsPage/SpotProfile";
 import ConfirmDelete from "./components/SpotsPage/ConfirmDelete";
-import SpotForm from "./components/SpotsPage/SpotForm";
+// import SpotForm from "./components/SpotsPage/SpotForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    dispatch(spotActions.fetchSpots());
+    // dispatch(spotActions.fetchSpots());
   }, [dispatch]);
 
   return (

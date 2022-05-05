@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import * as spotActions from "../../store/spots";
-// import DeleteSpot from "./DeleteSpot";
-// import spotFormModal from "./spotFormModal";
-// import CreateSpot from "./CreateSpot";
+import SpotFormModal from "./SpotModal";
+
 import "./Spot.css";
-// import { spotFormModal } from "../Form/FormModal";
+// import DeleteSpot from "./DeleteSpot";
+// import CreateSpot from "./CreateSpot";
 // import { spotDeleteButton } from "../Form/DeleteButton";
 
 
 const SpotProfile = () => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
     const spot = useSelector((state) => state.spots[id]);
@@ -47,7 +47,7 @@ const SpotProfile = () => {
         spotColor = 'maroon';
     }
 
-    const handleClick = () => history.push(`/listing/${spot.id}`);
+    // const handleClick = () => history.push(`/listing/${spot.id}`);
 
     return (
         // <div onClick={handleClick} className={`spot-profile ${spotColor}`}>
@@ -74,7 +74,7 @@ const SpotHeader = () => {
 
     const handleDelete = async (e) => {
         e.preventDefault();
-        const deletedSpot = await dispatch(spotActions.removeSpot(id))
+        await dispatch(spotActions.removeSpot(id))
             .then(() => history.push("/listings"));
     };
 
@@ -93,7 +93,7 @@ const SpotHeader = () => {
             </div>
 
             <div className='spot_header_right'> {sessionUser?.id === spot?.id && (<>
-                <spotFormModal name='Edit Spot' edit={true} spot={spot} />
+                <SpotFormModal name='Edit Spot' edit={'true'} spot={spot} />
                 <button onClick={handleDelete}>Delete Spot</button>
                 {/* <DeleteSpot id={id} /> */}
             </>)}

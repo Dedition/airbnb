@@ -51,7 +51,7 @@ const SpotForm = ({ edit, spot, closeModal }) => {
             history.push("/listings/" + created?.id);
             return closeModal();
         }
-        return 'Oops. Something went wrong. :( ';
+        return alert('Oops. Something went wrong. :( ');
     };
 
     useEffect(() => {

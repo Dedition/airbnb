@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
     Button, Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input, Label, Row
 } from "reactstrap";

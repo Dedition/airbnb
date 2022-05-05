@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import SpotForm from './SpotForm';
 
 // import { Button } from 'reactstrap';
 
-const SpotFormModal = ({ name = 'Become a Host', edit = false, spot = null }) => {
+const SpotModal = ({ name = 'Become a Host', edit = false, spot = null }) => {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -19,4 +19,4 @@ const SpotFormModal = ({ name = 'Become a Host', edit = false, spot = null }) =>
     );
 }
 
-export default SpotFormModal;
+export default SpotModal;

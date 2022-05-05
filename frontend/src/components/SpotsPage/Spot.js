@@ -11,6 +11,7 @@ export function Listings({ userId = null }) {
 
     const spots = Object.values(spotsObj);
 
+
     useEffect(() => {
         dispatch(thunk);
     }, [dispatch]);
