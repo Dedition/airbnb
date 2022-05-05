@@ -17,13 +17,12 @@ const handleValidationErrors = (req, _res, next) => {
     next();
 };
 
-const validatePut = [
+const validatePUT = [
     check('id')
         .exists({ checkFalsy: true })
         .withMessage('Please provide an id.')
         .notEmpty()
 ];
-
 
 const validateReview = [
     check('content')
@@ -44,3 +43,8 @@ const validateReview = [
         .withMessage('Was the cleanliness of the property up to standard?'),
     handleValidationErrors
 ];
+
+module.exports = {
+    validatePUT,
+    validateReview
+}

@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { Review, User } = require('../../db/models');
 
 // Do you want to create? You should
-// const { validateReview, validatePUT }
+const { validateReview, validatePUT } = require('../../validations/review');
 
 router.route('/:reviewId')
     .put(asyncHandler(async (req, res) => {
