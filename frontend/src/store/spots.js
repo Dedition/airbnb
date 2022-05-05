@@ -17,7 +17,7 @@ const deleteSpot = (spotId) => ({ type: DELETE_SPOT, spotId });
 // todo                                 Thunks
 // todo ——————————————————————————————————————————————————————————————————————————————————
 export const createSpotAction = (spot) => async (dispatch) => {
-    const response = await csrfFetch('/api/spots/', {
+    const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
@@ -117,6 +117,7 @@ const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_SPOT: {
             // newState = { ...state, listOfSpots: [...state.listOfSpots] };
+            console.log('HELLLLOOOOOOOO', action.spot);
             newState.listOfSpots.unshift(action.spot);
             return newState;
         }

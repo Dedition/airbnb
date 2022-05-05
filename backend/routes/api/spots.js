@@ -16,11 +16,10 @@ router.get('/', asyncHandler(async (req, res) => {
 
 router.put('/spots/:id', requireAuth, asyncHandler(async (req, res) => {
     const { spotId } = req.params;
-    console.log('ENTERED THE PUT==========================', req.body);
+    // console.log('ENTERED THE PUT==========================', spotId);
     const spotToUpdate = await Spot.findByPk(spotId);
-
     const { errors, isValid } = spotValidation(req.body);
-    // console.log(errors, 'HELLLO')
+    // console.log(errors, 'HELLL=====================================')
     if (!isValid) {
         return res.status(400).json({ errors });
     }
@@ -29,15 +28,15 @@ router.put('/spots/:id', requireAuth, asyncHandler(async (req, res) => {
 }));
 
 router.get("/:id", asyncHandler(async (req, res) => {
-    const spotId = await Spot.findOne(req.params.id);
+    const spotId = await Spot.findByPk(req.params);
     return res.json({ spotId });
 }));
 
 router.post('/', spotValidation.validateCreate, requireAuth, asyncHandler(async (req, res) => {
     // console.log('HELLOOOOOOOOOOOOOO');
-    const { address, city, state, country, name, price } = req.body;
-    const newSpot = await Spot.build({ address, city, state, country, name, price });
-    const savedRes = await newSpot.save();
+    const { userId, address, city, state, country, name, price } = req.body;
+    const newSpot = await Spot.build({ userId, address, city, state, country, name, price });
+    await newSpot.save();
     return res.json({ newSpot });
 }));
 
