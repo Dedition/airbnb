@@ -66,11 +66,8 @@ module.exports = (sequelize, DataTypes) => {
 
   Review.associate = function (models) {
     // associations can be defined here
-    Review.belongsTo(models.User, { foreignKey: "userId" });
-    Review.belongsTo(models.Spot, {
-      foreignKey: 'spotId',
-      onDelete: 'CASCADE'
-    });
+    Review.belongsTo(models.User, { foreignKey: "userId", onDelete: "CASCADE" });
+    Review.belongsTo(models.Spot, { foreignKey: 'spotId', onDelete: 'CASCADE' });
   };
   return Review;
 };
