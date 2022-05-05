@@ -135,7 +135,7 @@ const spotReducer = (state = initialState, action) => {
             return newState;
         case EDIT_SPOT: {
             newState = { ...state };
-            const editedSpot = state.listOfSpots.map(spot => spot.id === action.payload.id ? spot = action.payload : spot);
+            const editedSpot = state.listOfSpots.map(spot => spot?.id === action?.payload?.id ? spot = action?.payload : spot);
             newState.listOfSpots = editedSpot;
             return newState;
         };

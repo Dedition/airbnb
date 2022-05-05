@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, NavLink, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 import SpotFormModal from "./SpotModal";
 
