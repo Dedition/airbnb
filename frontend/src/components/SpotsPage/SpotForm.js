@@ -37,9 +37,10 @@ const SpotForm = ({ edit, spot, closeModal }) => {
         formData.append("name", name);
         formData.append("price", price);
 
+        const newInfo = { userId, address, city, state, country, name, price };
 
         if (edit) {
-            const updated = await dispatch(spotActions.updateSpot(formData, spot?.id))
+            const updated = await dispatch(spotActions.updateSpot(newInfo, spot?.id))
             if (updated?.errors) setErrors(updated?.errors);
             return closeModal();
         }

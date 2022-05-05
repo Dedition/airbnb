@@ -17,22 +17,21 @@ const deleteSpot = (spotId) => ({ type: DELETE_SPOT, spotId });
 // todo                                 Thunks
 // todo ——————————————————————————————————————————————————————————————————————————————————
 export const createSpotAction = (spot) => async (dispatch) => {
-    const response = await csrfFetch('/api/spots', {
+    const response = await csrfFetch('/api/spots/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
     });
     if (response.ok) {
         const data = await response.json();
-        // console.log('============', data);
         dispatch(createSpot(data));
         return data;
     }
-    return response;
+    throw new Error('Something went wrong!');
 };
 
 export const fetchSpots = () => async (dispatch) => {
-    const response = await csrfFetch('/api/spots', { method: 'GET' });
+    const response = await csrfFetch('/api/spots/', { method: 'GET' });
 
     if (response.ok) {
         const data = await response.json();
@@ -65,6 +64,7 @@ export const getOneSpot = (spotId) => async (dispatch) => {
 };
 
 export const updateSpot = (spot, spotId) => async (dispatch) => {
+    console.log('spot', spot);
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },

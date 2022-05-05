@@ -21,10 +21,11 @@ const CreateSpot = () => {
     const userId = useSelector(state => state.session.user.id);
     // console.log(typeof userId);
 
-    const spot = useSelector((state) => state.spots.spot);
+    const spot = useSelector((state) => console.log(state.spots.spots));
     // console.log(spot)
+
     const isLoading = useSelector((state) => state.spots.isLoading);
-    console.log(isLoading)
+    // console.log(isLoading)
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -1,6 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Spot } = require('../../db/models');
+const { requireAuth } = require('../../utils/auth');
 
 const spotValidation = require('../../validations/spot');
 
@@ -13,14 +14,18 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json({ spots });
 }));
 
-router.put('/listing/:id', asyncHandler(async (req, res) => {
+router.put('/spots/:id', requireAuth, asyncHandler(async (req, res) => {
+    const { spotId } = req.params;
+    console.log('ENTERED THE PUT==========================', req.body);
+    const spotToUpdate = await Spot.findByPk(spotId);
+
     const { errors, isValid } = spotValidation(req.body);
+    // console.log(errors, 'HELLLO')
     if (!isValid) {
         return res.status(400).json({ errors });
     }
-    const { address, city, state, country, name, price } = req.body;
-    const spot = await Spot.update({ address, city, state, country, name, price });
-    return res.json(spot);
+    const spot = await spotToUpdate.update({ address, city, state, country, name, price });
+    return res.json({ spotToUpdate });
 }));
 
 router.get("/:id", asyncHandler(async (req, res) => {
@@ -28,19 +33,30 @@ router.get("/:id", asyncHandler(async (req, res) => {
     return res.json({ spotId });
 }));
 
-router.post('/', spotValidation.validateCreate, asyncHandler(async (req, res) => {
-    const newSpot = await Spot.build(req.body);
+router.post('/', spotValidation.validateCreate, requireAuth, asyncHandler(async (req, res) => {
+    // console.log('HELLOOOOOOOOOOOOOO');
+    const { address, city, state, country, name, price } = req.body;
+    const newSpot = await Spot.build({ address, city, state, country, name, price });
     const savedRes = await newSpot.save();
     return res.json({ newSpot });
 }));
 
 
-router.delete('/:id', asyncHandler(async (req, res) => {
-    const spotId = await Spot.destroy(req.params.id);
-    if (!spotId) {
-        return res.status(404).json({ message: 'Spot not found' });
+router.delete('/:spotId', asyncHandler(async (req, res) => {
+    const { spotId } = req.params;
+    const spotToDestroy = await Spot.findByPk(spotId);
+    if (spotToDestroy) {
+        await spotToDestroy.destroy();
+        return res.json({ message: 'Spot deleted' });
     }
-    return res.json({ spotId });
+    return res.status(404).json({ message: 'Spot not found' });
 }));
+
+// const spotId = await Spot.destroy(req.params.id);
+//     if (!spotId) {
+//         return res.status(404).json({ message: 'Spot not found' });
+//     }
+//     return res.json({ spotId });
+// }));
 
 module.exports = router;
