@@ -71,12 +71,14 @@ export const updateSpot = (spot, spotId) => async (dispatch) => {
         body: JSON.stringify(spot)
     });
     if (response.ok) {
+        console.log('===========================', response);
         const updatedSpot = await response.json();
         dispatch(editSpot(updatedSpot));
         return updatedSpot;
     }
     return response;
 };
+
 // method: 'PUT',
 // body: JSON.stringify(spot),
 
@@ -116,8 +118,9 @@ const spotReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case CREATE_SPOT: {
-            // newState = { ...state, listOfSpots: [...state.listOfSpots] };
-            console.log('HELLLLOOOOOOOO', action.spot);
+            newState = { ...state, listOfSpots: [...state.listOfSpots] };
+            // console.log('HELLLLOOOOOOOO', action.payload);
+            // console.log('HELLLLOOOOOOOO', action.newState);
             newState.listOfSpots.unshift(action.spot);
             return newState;
         }

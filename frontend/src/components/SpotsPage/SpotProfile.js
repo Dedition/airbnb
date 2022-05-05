@@ -86,16 +86,14 @@ const SpotHeader = () => {
                 <h3>{`${spot?.city}, ${spot?.state}`}</h3>
 
                 <div style={{ width: '14em', margin: 0 }} className="line" />
-
-                <NavLink to={`/listing/${id}`}>
+                {/* <NavLink to={`/listing/${id}`}>
                     <button className='btn-primary'>View Listing</button>
-                </NavLink>
+                </NavLink> */}
             </div>
 
-            <div className='spot_header_right'> {sessionUser?.id === spot?.id && (<>
-                <SpotFormModal name='Edit Spot' edit={'true'} spot={spot} />
+            <div className='spot_header_right'> {sessionUser?.id && (<>
+                <SpotFormModal name='Edit Spot' edit={true} spot={spot} />
                 <button onClick={handleDelete}>Delete Spot</button>
-                {/* <DeleteSpot id={id} /> */}
             </>)}
             </div>
         </div>

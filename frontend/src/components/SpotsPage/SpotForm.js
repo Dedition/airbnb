@@ -48,9 +48,10 @@ const SpotForm = ({ edit, spot, closeModal }) => {
 
         const created = await dispatch(spotActions.createSpotAction(newInfo));
 
-        if (created?.errors) setErrors(created?.errors);
+        // if (created?.errors) setErrors(created?.errors);
+
         if (created?.id) {
-            history.push("/listings/" + created?.id);
+            history.push("/listing/" + created?.id);
             return closeModal();
         }
         return alert('Oops. Something went wrong. :( ');

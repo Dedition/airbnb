@@ -15,16 +15,33 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 router.put('/spots/:id', requireAuth, asyncHandler(async (req, res) => {
-    const { spotId } = req.params;
-    // console.log('ENTERED THE PUT==========================', spotId);
-    const spotToUpdate = await Spot.findByPk(spotId);
-    const { errors, isValid } = spotValidation(req.body);
-    // console.log(errors, 'HELLL=====================================')
-    if (!isValid) {
-        return res.status(400).json({ errors });
+    const { id } = req.params;
+    const { name, description, address, city, state, country, price } = req.body;
+
+    const spot = await Spot.findByPk(id);
+    if (!spot) {
+        return res.status(404).json({ message: 'Spot not found' });
     }
+
+    await spot.update({ name, description, address, city, state, country, price });
+
+    return res.json({ spot });
+}));
+
+
+router.put('/spots/:spotId', requireAuth, asyncHandler(async (req, res) => {
+    // console.log('WOORKKKKKINNNNNNNNNGGGGGGGGGGGGGG');
+    const { id } = req.params;
+    console.log('id', id);
+    // console.log('ENTERED THE PUT==========================', spotId);
+    const spotToUpdate = await Spot.findByPk(id);
+    // const { errors, isValid } = spotValidation(req.body);
+    // console.log(errors, 'HELLL=====================================')
+    // if (!isValid) {
+    //     return res.status(400).json({ errors });
+    // }
     const spot = await spotToUpdate.update({ address, city, state, country, name, price });
-    return res.json({ spotToUpdate });
+    return res.json({ spot });
 }));
 
 router.get("/:id", asyncHandler(async (req, res) => {
