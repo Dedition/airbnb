@@ -19,7 +19,7 @@ const CreateSpot = () => {
     const [price, setPrice] = useState(0);
 
     const userId = useSelector(state => state.session.user.id);
-    console.log(typeof userId, userId);
+    // console.log(typeof userId, userId);
 
     const spot = useSelector((state) => state.spots.spot);
     // console.log(spot)

@@ -22,16 +22,19 @@ export const createSpotAction = (spot) => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
     });
+    // console.log('=================================');
     if (response.ok) {
-        const data = await response.json();
-        dispatch(createSpot(data));
-        return data;
+
+        const { newSpot } = await response.json();
+        // console.log('=================================', data);
+        dispatch(createSpot(newSpot));
+        return newSpot;
     }
     throw new Error('Something went wrong!');
 };
 
 export const fetchSpots = () => async (dispatch) => {
-    const response = await csrfFetch('/api/spots/', { method: 'GET' });
+    const response = await csrfFetch('/api/spots', { method: 'GET' });
 
     if (response.ok) {
         const data = await response.json();
@@ -64,14 +67,14 @@ export const getOneSpot = (spotId) => async (dispatch) => {
 };
 
 export const updateSpot = (spot, spotId) => async (dispatch) => {
-    console.log('spot', spot);
+    // console.log('spot', spot);
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
     });
     if (response.ok) {
-        console.log('===========================', response);
+        // console.log('===========================', response);
         const updatedSpot = await response.json();
         dispatch(editSpot(updatedSpot));
         return updatedSpot;
@@ -118,13 +121,18 @@ const spotReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case CREATE_SPOT: {
-            newState = { ...state, listOfSpots: [...state.listOfSpots] };
+            newState = { ...state, [action.payload.id]: action.payload, listOfSpots: [...Object.values(state), action.payload] };
+            // console.log('HELLLLOOOOOOOO', action.newState);
             // console.log('HELLLLOOOOOOOO', action.payload);
             // console.log('HELLLLOOOOOOOO', action.newState);
-            newState.listOfSpots.unshift(action.spot);
+
+            // newState.listOfSpots.unshift(action.spot);
             return newState;
         }
         case GET_SPOT:
+            newState = {};
+            action.payload.spots.forEach(spot => newState[spot.id] = spot)
+            return newState;
         case GET_ALL_SPOTS_BY_USER_ID:
             newState = {};
             action.payload.spots.forEach(spot => newState[spot.id] = spot)
@@ -133,12 +141,12 @@ const spotReducer = (state = initialState, action) => {
         case GET_ONE_SPOT:
             newState = { ...state, [action.payload.id]: action.spot };
             return newState;
-        case EDIT_SPOT: {
+        case EDIT_SPOT:
             newState = { ...state };
-            const editedSpot = state.listOfSpots.map(spot => spot?.id === action?.payload?.id ? spot = action?.payload : spot);
-            newState.listOfSpots = editedSpot;
-            return newState;
-        };
+            newState[action.payload.spot.id] = action.payload.spot;
+            console.log(action.payload.spot.id)
+            // console.log(newState)
+            return newState
         case DELETE_SPOT:
             newState = { ...state };
             delete newState[action.spotId];

@@ -9,7 +9,7 @@ const router = express.Router();
 const stateValReg = /^(?:(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]))$/;
 
 router.get('/', asyncHandler(async (req, res) => {
-    console.log(req);
+    // console.log(req);
     const spots = await Spot.findAll();
     return res.json({ spots });
 }));
@@ -48,7 +48,7 @@ router.get("/:id", asyncHandler(async (req, res) => {
     return res.json({ spotId });
 }));
 
-router.post('/', spotValidation.validateCreate, requireAuth, asyncHandler(async (req, res) => {
+router.post('/', asyncHandler(async (req, res) => {
     // console.log('HELLOOOOOOOOOOOOOO');
     const { userId, address, city, state, country, name, price } = req.body;
     const newSpot = await Spot.build({ userId, address, city, state, country, name, price });
