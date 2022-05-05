@@ -24,6 +24,7 @@ const CreateSpot = () => {
     const spot = useSelector((state) => state.spots.spot);
     // console.log(spot)
     const isLoading = useSelector((state) => state.spots.isLoading);
+    console.log(isLoading)
 
     const handleSubmit = (e) => {
         e.preventDefault();
