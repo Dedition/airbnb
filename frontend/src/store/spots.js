@@ -115,13 +115,13 @@ export const removeSpot = (id) => async (dispatch) => {
 // todo ——————————————————————————————————————————————————————————————————————————————————
 // todo                                 Reducer
 // todo ——————————————————————————————————————————————————————————————————————————————————
-const initialState = { listOfSpots: [] };
+const initialState = {};
 
 const spotReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case CREATE_SPOT: {
-            newState = { ...state, [action.payload.id]: action.payload, listOfSpots: [...Object.values(state), action.payload] };
+            newState = { ...state, [action.payload.id]: action.payload };
             // console.log('HELLLLOOOOOOOO', action.newState);
             // console.log('HELLLLOOOOOOOO', action.payload);
             // console.log('HELLLLOOOOOOOO', action.newState);
