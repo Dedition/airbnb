@@ -22,6 +22,13 @@ router.put('/:id', validatePUT, validateReview, asyncHandler(async (req, res, ne
     return res.json(await Review.findByPk(id, { include: [User] }));
 }));
 
-router.delete('/:id', asyncHandler(async (req, res) => res.json(await Review.deleteReview({ where: { id: req.params.id } }))));
+router.delete('/:id', asyncHandler(async (req, res) => {
+    console.log();
+    console.log(req.body);
+    return res.json(await Review.deleteReview({
+        where:
+            { id: req.params.id }
+    }));
+}));
 
 module.exports = router;
