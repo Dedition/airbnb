@@ -6,7 +6,7 @@ const { Review, User } = require('../../db/models');
 const { validateReview, validatePUT } = require('../../validations/reviews');
 const router = express.Router();
 
-// IT'S CALLED 'reviewId'. DON'T FORGET IT
+// IT'S CALLED 'id'. DON'T FORGET IT
 router.put('/:id', validatePUT, validateReview, asyncHandler(async (req, res, next) => {
     const id = req.body.id;
     console.log(req.params.id)
