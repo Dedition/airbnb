@@ -1,6 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Spot } = require('../../db/models');
+const { Review } = require('../../db/models/review');
 const { requireAuth } = require('../../utils/auth');
 
 const spotValidation = require('../../validations/spot');
@@ -48,6 +49,16 @@ router.get("/:id", asyncHandler(async (req, res) => {
     return res.json({ spotId });
 }));
 
+router.get("/:id/reviews", asyncHandler(async (req, res) => {
+    const spotId = await Spot.findByPk(req.params.id);
+    const reviews = await spotId.getReviews();
+    return res.json({ reviews });
+}));
+//     const reviews = await Review.findAll({ where: { id: req.params.id }, include: [User], order: [['createdAt', 'DESC']] });
+//     return res.json({ reviews });
+// }));
+
+
 router.post('/', asyncHandler(async (req, res) => {
     // console.log('HELLOOOOOOOOOOOOOO');
     const { userId, address, city, state, country, name, price } = req.body;
@@ -66,6 +77,7 @@ router.delete('/:spotId', asyncHandler(async (req, res) => {
     }
     return res.status(404).json({ message: 'Spot not found' });
 }));
+
 
 // const spotId = await Spot.destroy(req.params.id);
 //     if (!spotId) {

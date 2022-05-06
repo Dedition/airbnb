@@ -40,8 +40,8 @@ module.exports = (sequelize, DataTypes) => {
 
   Review.createReview = async (reqData) => await Review.create(reqData);
 
-  Review.getReviewsBySpotId = async (id) => await Review.findAll({
-    where: { id }, order: [['createdAt', 'DESC']]
+  Review.getReviewsBySpotId = async (spotId) => await Review.findAll({
+    where: { spotId }, order: [['createdAt', 'DESC']]
   });
 
   Review.getReviewsByUserId = async (id) => await Review.findByPk(id);

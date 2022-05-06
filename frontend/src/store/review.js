@@ -81,12 +81,14 @@ const reviewReducer = (state = initalState, action) => {
     let newState;
     switch (action.type) {
         case CREATE_REVIEW:
-            console.log('==================', action.reviews);
+            // console.log('==================', action.reviews);
             newState = { ...state, [action.review.id]: action.review };
             return newState;
         case GET_ALL_REVIEWS:
-            console.log('==================', action.reviews);
-            newState = { ...state, [action.spotId]: action.reviews };
+            // console.log('==================', action.reviews);
+            // newState = { ...state, [action.review.id]: action.reviews };
+            newState = { ...state, ...action.reviews.reviews };
+            // newState = { ...state, [action.spotId]: action.reviews };
             return newState;
         case UPDATE_REVIEW:
             newState = { ...state, [action.review.id]: action.review };
