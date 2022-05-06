@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReviews } from '../../store/review';
+import { ReviewInfo } from './ReviewInfo';
+import { ReviewList } from './ReviewList';
 
 //! This page will be used to render the ratings for you
 
@@ -8,13 +10,33 @@ import { getReviews } from '../../store/review';
 // TODO                                Mount reviews
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
+const ReviewPage = ({ id }) => {
+    const dispatch = useDispatch();
+    const avg = (reviews, key) => (reviews.reduce((prev, curr) => prev + curr[key], 0)) / reviews.length;
+
+    const reviews = useSelector(state => state.reviews);
+    console.log(reviews);
+
+    useEffect(() => { dispatch(getReviews(id)) }, [dispatch]);
+
+    const reviewInfo = [
+        { name: 'Rating', value: +avg(reviews, 'rating').toFixed(2) },
+        { name: 'Cleanliness', value: +avg(reviews, 'cleanliness').toFixed(2) },
+        { name: 'Communication', value: +avg(reviews, 'communication').toFixed(2) },
+    ];
+
+    return (<>
+        <ReviewInfo reviews={reviews} reviewData={reviewInfo} totalReviews={reviews?.length} />
+        <ReviewList reviews={reviews} />
+    </>);
+};
+
+export default ReviewPage;
 
 
 
-
-
-
-
+// ???????????????????????????????????????????????????????????????????????????????????????
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                Add components
 // TODO ——————————————————————————————————————————————————————————————————————————————————
+// ???????????????????????????????????????????????????????????????????????????????????????
