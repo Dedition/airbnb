@@ -15,7 +15,7 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
     //eslint-disable-next-line
     const [userReview, setUserReview] = useState(false);
 
-    const spot = useSelector(state => state.spot[id]);
+    const spot = useSelector(state => state);
     console.log(spot)
     const user = useSelector(state => state.session.user);
     console.log(user)
