@@ -11,7 +11,7 @@ const Meter = ({ rating }) => <meter value={rating} min={0} max={5} />
 
 const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
 
-    const [id] = useParams();
+    const { id } = useParams();
     //eslint-disable-next-line
     const [userReview, setUserReview] = useState(false);
 

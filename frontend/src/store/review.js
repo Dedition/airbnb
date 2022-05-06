@@ -16,8 +16,8 @@ const deleteOneReview = (id) => ({ type: DELETE_REVIEW, id });
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 Thunks
 // TODO ——————————————————————————————————————————————————————————————————————————————————
-export const createReview = (review, spotId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+export const createReview = (review, id) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${id}/reviews`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ export const getReviews = (id) => async (dispatch) => {
 }
 
 export const updateReview = (review) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${review.id}/reviews/${review.id}`, {
+    const response = await csrfFetch(`/api/spots/${review.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -81,9 +81,11 @@ const reviewReducer = (state = initalState, action) => {
     let newState;
     switch (action.type) {
         case CREATE_REVIEW:
+            console.log('==================', action.reviews);
             newState = { ...state, [action.review.id]: action.review };
             return newState;
         case GET_ALL_REVIEWS:
+            console.log('==================', action.reviews);
             newState = { ...state, [action.spotId]: action.reviews };
             return newState;
         case UPDATE_REVIEW:

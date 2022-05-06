@@ -11,9 +11,9 @@ import ReviewList from './ReviewList';
 
 const ReviewPage = ({ id }) => {
     const dispatch = useDispatch();
-    const avg = (reviews, key) => (reviews.reduce((prev, curr) => prev + curr[key], 0)) / reviews.length;
+    const avg = (reviews, key) => (Array.from(reviews).reduce((prev, curr) => prev + curr[key], 0)) / reviews.length;
 
-    const reviews = useSelector(state => state.reviews);
+    const reviews = useSelector(state => state);
     console.log(reviews);
 
     useEffect(() => { dispatch(getReviews(id)) }, [dispatch]);

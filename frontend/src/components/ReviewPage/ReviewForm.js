@@ -9,7 +9,7 @@ const ReviewForm = ({ closeModal }) => {
     const { id } = useParams();
     const userId = useSelector(state => state.session.user.id);
 
-    useEffect(() => { dispatch(getReviews(id)) }, [dispatch, id]);
+    useEffect(() => { dispatch(getReviews(id)) }, [dispatch]);
 
     const [content, setContent] = useState('');
     const [cleanliness, setCleanliness] = useState(0);
