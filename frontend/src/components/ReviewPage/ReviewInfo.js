@@ -16,7 +16,7 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
     //eslint-disable-next-line
     const [belongsToUser, setBelongsToUser] = useState(false);
 
-    const spot = useSelector(state => state.spots.spots);
+    const spot = useSelector(state => state.spots[id]);
     console.log(spot)
     const reviewsObj = useSelector(state => state.reviews);
     // console.log(reviewsObj)
@@ -45,7 +45,6 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
                             <p>Communication: {review.communication}</p>
                             <p>Overall Rating: {review.rating}</p>
                             <br></br>
-                            <ReviewList reviews={reviews} />
                         </li>
                     ))}
                 </ul>

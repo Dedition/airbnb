@@ -54,7 +54,7 @@
     background-color: rgb(229, 229, 229);
 }
 
-/* #new-review-button {
+#new-review-button {
     width: 7em;
     margin-left: auto;
     margin-right: auto;
@@ -62,7 +62,7 @@
     border-radius: 0.5em;
     margin-top: 1em;
     color: #005c0c;
-} */
+}
 
 .review-list-header-right {
     display: flex;

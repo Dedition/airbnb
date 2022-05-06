@@ -75,9 +75,9 @@ export const deleteReview = (id) => async (dispatch) => {
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 Reducer
 // TODO ——————————————————————————————————————————————————————————————————————————————————
-const initalState = {};
+const initialState = {};
 
-const reviewReducer = (state = initalState, action) => {
+const reviewReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case CREATE_REVIEW:
