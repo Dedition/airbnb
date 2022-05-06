@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReviews } from '../../store/review';
-import { ReviewInfo } from './ReviewInfo';
-import { ReviewList } from './ReviewList';
-
+import ReviewInfo from './ReviewInfo';
+import ReviewList from './ReviewList';
 //! This page will be used to render the ratings for you
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————

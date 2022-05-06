@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ReviewModal from "./ReviewModal";
 
@@ -12,6 +12,7 @@ const Meter = ({ rating }) => <meter value={rating} min={0} max={5} />
 const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
 
     const [id] = useParams();
+    //eslint-disable-next-line
     const [userReview, setUserReview] = useState(false);
 
     const spot = useSelector(state => state.spot[id]);
@@ -39,7 +40,7 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
     return (
         <div className='review_heading'>
             {!reviewInfo[0]?.value ? <div>STILL NO REVIEWS???</div> :
-                <h2><i className="review-star fas fa-star" />{`${reviewInfo[0]?.value} • ${totalRevieews} reviews`} </h2>
+                <h2><i className="review-star fas fa-star" />{`${reviewInfo[0]?.value} • ${totalReviews} reviews`} </h2>
             }
             <div className='review-meter-container'>
                 {reviewInfo.slice(1).map(datum => (<ReviewInfoLine key={datum.name} datum={datum} />))}

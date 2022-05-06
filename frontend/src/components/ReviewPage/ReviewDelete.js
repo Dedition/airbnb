@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ReviewDelete = ({ id }) => {
     const dispatch = useDispatch();
-    const handleDelete = async => await dispatch(deleteReview(id));
+    const handleDelete = () => dispatch(deleteReview(id));
+    // const handleDelete = async => await dispatch(deleteReview(id));
 
     return (
         <button className="btn btn-danger" onClick={handleDelete}>

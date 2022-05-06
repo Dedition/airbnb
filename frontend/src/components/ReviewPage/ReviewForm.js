@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { createReview, getReviews } from "../../store/review";
-import { NewForm, NumInput } from '../Form';
+import { NewForm, NumInput } from '../Form/Form';
 
 const ReviewForm = ({ closeModal }) => {
     const dispatch = useDispatch();
@@ -18,12 +18,10 @@ const ReviewForm = ({ closeModal }) => {
     const [errors, setErrors] = useState({});
     const [validationErrors, setValidationErrors] = useState([]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newReview = await dispatch(createReview({
-            userId, id, content, cleanliness, communication, rating
-        })).catch(async (res) => {
+        const newReview = await dispatch(createReview({ content, cleanliness, communication, rating, userId })).catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
         });
@@ -31,12 +29,23 @@ const ReviewForm = ({ closeModal }) => {
         if (newReview?.errors) setErrors(newReview?.errors);
 
         return closeModal();
+
+        // const newReview = await dispatch(createReview({
+        //     userId, id, content, cleanliness, communication, rating
+        // })).catch(async (res) => {
+        //     const data = await res.json();
+        //     if (data && data.errors) setErrors(data.errors);
+        // });
+
+        // if (newReview?.errors) setErrors(newReview?.errors);
+
+        // return closeModal();
     }
 
     useEffect(() => {
         const errors = [];
         if (content.length < 1) errors.push('Review content is required');
-        if (cleanliness < 1 || communication < 1 || rating < 1) errors.push(`Sorry, but ${e.target.value} rating must be between 1 and 5`);
+        if (cleanliness < 1 || communication < 1 || rating < 1) errors.push(`Sorry, but [INCLUDE] rating must be between 1 and 5`);
         setValidationErrors(errors);
     }, [content, cleanliness, communication, rating]);
 
