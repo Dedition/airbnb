@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ReviewEdit from "./ReviewEdit";
 import ReviewDelete from "./ReviewDelete";
 
-const ReviewDeets = ({ review }) => {
+const ReviewDetails = ({ review }) => {
     const [userOwns, setUserOwns] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
 
@@ -46,7 +46,7 @@ const ReviewList = ({ reviews }) => {
 
     return (
         <div className="review-list-container">
-            {Array.from(reviews).map(review => (<ReviewDeets key={review.id} review={review} />))}
+            {Array.from(reviews).map(review => (<ReviewDetails key={review.id} review={review} />))}
         </div>
     )
 }

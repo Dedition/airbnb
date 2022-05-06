@@ -18,17 +18,19 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
 
     const spot = useSelector(state => state.spots[id]);
     console.log(spot)
-    const reviewsObj = useSelector(state => state.reviews);
     // console.log(reviewsObj)
     const sessionUser = useSelector(state => state.session.user);
     // console.log(user)
-    const reviewsArr = Object.values(reviewsObj);
+    let reviewsArr = Object.values(useSelector(state => state.reviews));
+    reviewsArr = reviewsArr.filter((review) => review?.spotId === +id);
+    console.log('=====', reviewsArr[0]?.id);
+    console.log();
+    //
     // console.log(reviewsArr)
-
-    useEffect(() => {
-        if (sessionUser?.id === spot?.userId) setBelongsToUser(true);
-        else setBelongsToUser(false);
-    }, [sessionUser, spot])
+    // useEffect(() => {
+    //     if (sessionUser?.id === spot?.userId) setBelongsToUser(true);
+    //     else setBelongsToUser(false);
+    // }, [sessionUser, spot])
 
     return (
         <div className='review-info'>
