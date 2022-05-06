@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 import SpotFormModal from "./SpotModal";
-
+import ReviewPage from '../ReviewPage';
 import "./Spot.css";
 // import DeleteSpot from "./DeleteSpot";
 // import CreateSpot from "./CreateSpot";
@@ -57,8 +57,8 @@ const SpotProfile = () => {
                 <div style={{ width: '75%' }} className="line" />
                 {/* <Image spotId={spotId}/>
         <div style={{width:'75%'}} className="line"/> */}
-                {/* <Review spotId={spotId} /> */}
-                {/* <div className='filler-box' style={{backgroundColor:'white'}}/> */}
+                <ReviewPage id={id} />
+                <div className='filler-box' style={{ backgroundColor: 'white' }} />
             </div>
         </div>
     );
