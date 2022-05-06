@@ -1,21 +1,21 @@
-const router = require('express').Router();
+const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Review, User } = require('../../db/models');
 
-// Do you want to create? You should
-const { validateReview, validatePUT } = require('../../validations/review');
+// Do you want to create validators? You should
+const { validateReview, validatePUT } = require('../../validations/reviews');
+const router = express.Router();
 
-router.route('/:reviewId')
-    .put(asyncHandler(async (req, res) => {
-        const id = await req.body.id;
-        delete req.body.id;
-        const updatedReview = await Review.update(req.body, {
-            where: { id },
-            returning: true,
-            plain: true
-        });
-        res.status(200).json(updatedReview[1]);
-    }))
-    .delete(asyncHandler(async (req, res) => {
-        res.json(await Review.deleteReview(req.params.reviewId));
-    }));
+// IT'S CALLED 'reviewId'. DON'T FORGET IT
+router.put('/:id', validatePUT, validateReview, asyncHandler(async (req, res, next) => {
+    const id = req.body.id;
+    console.log(req.params.id)
+
+    delete req.body.id;
+    const updatedReview = await Review.update(req.body, { where: { id }, returning: true, plain: true });
+    return res.json(await Review.findByPk(id, { include: [User] }));
+}));
+
+router.delete('/:id', asyncHandler(async (req, res) => res.json(await Review.deleteReview({ where: { id: req.params.id } }))));
+
+module.exports = router;

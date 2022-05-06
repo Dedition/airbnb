@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Review.deleteReview = async (id) => {
     const review = await Review.findByPk(id);
-    if (!review) throw new Error('Review not found. :( Be the first!');
+    if (!review) throw new Error('Review not found. :( Create one!');
     await Review.destroy({ where: { id } });
     return review;
   }

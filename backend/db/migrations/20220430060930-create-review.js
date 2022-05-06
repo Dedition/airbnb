@@ -18,11 +18,19 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Spots' }
       },
-      review: {
+      content: {
         allowNull: false,
         type: Sequelize.STRING
       },
       rating: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      cleanliness: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      communication: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
