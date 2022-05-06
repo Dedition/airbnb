@@ -44,7 +44,7 @@ router.put('/:id', requireAuth, asyncHandler(async (req, res) => {
 // }));
 
 router.get("/:id", asyncHandler(async (req, res) => {
-    const spotId = await Spot.findByPk(req.params);
+    const spotId = await Spot.findByPk(req.params.id);
     return res.json({ spotId });
 }));
 
