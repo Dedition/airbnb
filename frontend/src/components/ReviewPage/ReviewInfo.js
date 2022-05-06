@@ -46,7 +46,17 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
                 <h3>{totalReviews}</h3>
             </div>
             <div className='review-info-body'>
-                {reviewsArr.map(data => <ReviewInfoLine key={data.name} data={data} />)}
+                <ul>
+                    {reviewsArr.map(review => (
+                        <li key={review.id}>
+                            <p>{review.content}</p>
+                            <p>Cleanliness: {review.cleanliness}</p>
+                            <p>Communication: {review.communication}</p>
+                            <p>Overall Rating: {review.rating}</p>
+                            <br></br>
+                        </li>
+                    ))}
+                </ul>
             </div>
             <div className='review-info-footer'>
                 {userReview ? <ReviewModal spotId={id} /> : <h3>You must be logged in to leave a review!</h3>}

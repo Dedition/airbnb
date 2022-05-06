@@ -54,9 +54,23 @@ router.get("/:id/reviews", asyncHandler(async (req, res) => {
     const reviews = await spotId.getReviews();
     return res.json({ reviews });
 }));
-//     const reviews = await Review.findAll({ where: { id: req.params.id }, include: [User], order: [['createdAt', 'DESC']] });
-//     return res.json({ reviews });
-// }));
+
+
+router.post("/:id/reviews", requireAuth, asyncHandler(async (req, res) => {
+    //     const { id } = req.params;
+    const { id } = req.params;
+    const { rating, content, cleanliness, communication } = req.body;
+    const spot = await Spot.findByPk(id);
+    const review = await spot.createReview({ rating, content, cleanliness, communication, userId: req.user.id });
+    return res.json({ review });
+
+}));
+// const reviews = await Review.findAll({ where: { id: req.params.id }, include: [User], order: [['createdAt', 'DESC']] });
+// return res.json({ reviews });
+
+// console.log('=======================', req.params.id);
+// const review = await Review.createReview(req.body);
+// return res.json(await Review.findOne({ where: { id: review?.id }, include: [User] }));
 
 
 router.post('/', asyncHandler(async (req, res) => {

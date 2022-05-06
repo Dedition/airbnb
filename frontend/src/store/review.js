@@ -16,15 +16,15 @@ const deleteOneReview = (id) => ({ type: DELETE_REVIEW, id });
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 Thunks
 // TODO ——————————————————————————————————————————————————————————————————————————————————
-export const createReview = (review, id) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${id}/reviews`, {
+export const createReview = (review, spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(review),
     });
-
+    console.log('HELLO=====================', response);
     if (response.ok) {
         const review = await response.json();
         dispatch(createOneReview(review));
