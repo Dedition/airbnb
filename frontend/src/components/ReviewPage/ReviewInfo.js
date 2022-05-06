@@ -25,29 +25,29 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
         else setUserReview(false);
     }, [user, spot])
 
-    const ReviewInfoLine = ({ datum }) => (
+    const ReviewInfoLine = ({ data }) => (
         <div className='review-meter' >
-            <strong>{`${datum.name}:`}</strong>
-            {!datum.value ? <div>WHY IS THERE NO REVIEWS?!</div> :
+            <strong>{`${data.name}:`}</strong>
+            {!data.value ? <div>WHY IS THERE NO REVIEWS?!</div> :
                 <>
-                    <Meter rating={datum.value} />
-                    <strong>{datum.value}</strong>
+                    <Meter rating={data.value} />
+                    <strong>{data.value}</strong>
                 </>
             }
         </div>
     );
 
-    return (
-        <div className='review_heading'>
-            {!reviewInfo[0]?.value ? <div>STILL NO REVIEWS???</div> :
-                <h2><i className="review-star fas fa-star" />{`${reviewInfo[0]?.value} • ${totalReviews} reviews`} </h2>
-            }
-            <div className='review-meter-container'>
-                {reviewInfo.slice(1).map(datum => (<ReviewInfoLine key={datum.name} datum={datum} />))}
-            </div>
-            {!user && (<ReviewModal reviews={reviews} />)}
-        </div>
-    )
+    // return (
+    //     <div className='review_heading'>
+    //         {!reviewInfo?.value ? <div>STILL NO REVIEWS???</div> :
+    //             <h2><i className="review-star fas fa-star" />{`${reviewInfo?.value} • ${totalReviews} reviews`} </h2>
+    //         }
+    //         <div className='review-meter-container'>
+    //             {Object.values(reviewInfo).map(data => (<ReviewInfoLine key={data.name} data={data} />))}
+    //         </div>
+    //         {!user && (<ReviewModal reviews={reviews} />)}
+    //     </div>
+    // )
 }
 
 export default ReviewInfo;

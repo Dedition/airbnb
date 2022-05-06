@@ -10,7 +10,7 @@ export const DELETE_REVIEW = 'review/DELETE_REVIEW';
 // TODO                                 Action Creators
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 const createOneReview = (review, spotId) => ({ type: CREATE_REVIEW, review, spotId });
-const getAllOneReviews = (reviews, spotId) => ({ type: GET_ALL_REVIEWS, reviews, spotId });
+const getAllOneReviews = (reviews, id) => ({ type: GET_ALL_REVIEWS, reviews, id });
 const updateOneReview = (review) => ({ type: UPDATE_REVIEW, review });
 const deleteOneReview = (id) => ({ type: DELETE_REVIEW, id });
 // TODO ——————————————————————————————————————————————————————————————————————————————————
@@ -38,7 +38,7 @@ export const getReviews = (id) => async (dispatch) => {
 
     if (response.ok) {
         const reviews = await response.json();
-        dispatch(getAllOneReviews(reviews));
+        dispatch(getAllOneReviews(reviews, id));
         return reviews;
     }
     return response;

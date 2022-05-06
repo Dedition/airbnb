@@ -6,6 +6,12 @@ const { Review, User } = require('../../db/models');
 const { validateReview, validatePUT } = require('../../validations/reviews');
 const router = express.Router();
 
+// router.get('/', asyncHandler(async (req, res) => {
+//     const reviews = await Review.findAll();
+//     return res.json({ reviews });
+// }));
+
+
 // IT'S CALLED 'id'. DON'T FORGET IT
 router.put('/:id', validatePUT, validateReview, asyncHandler(async (req, res, next) => {
     const id = req.body.id;
