@@ -24,7 +24,7 @@ export const createReview = (review, spotId) => async (dispatch) => {
         },
         body: JSON.stringify(review),
     });
-    console.log('HELLO=====================', response);
+    // console.log('HELLO=====================', response);
     if (response.ok) {
         const review = await response.json();
         dispatch(createOneReview(review));
@@ -82,7 +82,7 @@ const reviewReducer = (state = initalState, action) => {
     switch (action.type) {
         case CREATE_REVIEW:
             // console.log('==================', action.reviews);
-            newState = { ...state, [action.review.id]: action.review };
+            newState = { ...state, [action.review.review.id]: action.review.review };
             return newState;
         case GET_ALL_REVIEWS:
             // console.log('==================', action.reviews);
@@ -91,7 +91,7 @@ const reviewReducer = (state = initalState, action) => {
             // newState = { ...state, [action.spotId]: action.reviews };
             return newState;
         case UPDATE_REVIEW:
-            newState = { ...state, [action.review.id]: action.review };
+            newState = { ...state, [action.review.review.id]: action.review.review };
             return newState;
         case DELETE_REVIEW:
             newState = { ...state };

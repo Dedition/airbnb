@@ -21,7 +21,7 @@ const ReviewForm = ({ closeModal }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newReview = await dispatch(createReview({ content, cleanliness, communication, rating, userId })).catch(async (res) => {
+        const newReview = await dispatch(createReview({ content, cleanliness, communication, rating, userId }, id)).catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
         });
