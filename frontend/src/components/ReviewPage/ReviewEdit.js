@@ -62,9 +62,15 @@ const ReviewEdit = ({ review, closeModal }) => {
     useEffect(() => {
         const errors = [];
         if (content.length < 1) errors.push('Review content is required');
-        if (cleanliness < 1 || communication < 1 || rating < 1) errors.push(`Sorry, but [REPLACE] rating must be between 1 and 5`);
+        if (cleanliness.length < 1 || cleanliness.length > 5) errors.push('Cleanliness is required to be between 1 and 5');
+        if (communication.length < 1 || communication.length > 5) errors.push('Communication is required to be between 1 and 5');
+        if (rating.length < 1 || rating.length > 5) errors.push('Rating is required to be between 1 and 5');
         setValidationErrors(errors);
     }, [content, cleanliness, communication, rating]);
+
+    //     if (cleanliness < 1 || cleanliness > 5 || communication < 1 || rating < 1) errors.push(`Sorry, but [REPLACE] rating must be between 1 and 5`);
+    //     setValidationErrors(errors);
+    // }, [content, cleanliness, communication, rating]);
 
     return (
         <NewForm onSub={handleSubmit} validationErrors={validationErrors} errors={errors} buttonName={'Update'}>

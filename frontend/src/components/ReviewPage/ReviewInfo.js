@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ReviewModal from "./ReviewModal";
 import ReviewList from "./ReviewList";
+import { deleteReview } from "../../store/review";
+import ReviewEdit from "./ReviewEdit";
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                               Add modal form and CSS here
@@ -11,7 +13,7 @@ import ReviewList from "./ReviewList";
 // const Meter = ({ rating }) => <meter id="meter" min="0" max='5' value={rating} />
 
 const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
-
+    const dispatch = useDispatch();
     const { id } = useParams();
     //eslint-disable-next-line
     const [belongsToUser, setBelongsToUser] = useState(false);
@@ -23,9 +25,11 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
     // console.log(user)
     let reviewsArr = Object.values(useSelector(state => state.reviews));
     reviewsArr = reviewsArr.filter((review) => review?.spotId === +id);
-    console.log('=====', reviewsArr[0]?.id);
-    console.log();
-    //
+    // console.log('=====', reviewsArr[0]?.id);
+    // console.log();
+
+    const handleDelete = () => dispatch(deleteReview(reviewsArr[0]?.id));
+
     // console.log(reviewsArr)
     // useEffect(() => {
     //     if (sessionUser?.id === spot?.userId) setBelongsToUser(true);
@@ -43,6 +47,8 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
                     {reviewsArr.map(review => (
                         <li key={review.id}>
                             <p>{review.content}</p>
+                            <button onClick={handleDelete}>Delete</button>
+                            <ReviewEdit review={review} />
                             <p>Cleanliness: {review.cleanliness}</p>
                             <p>Communication: {review.communication}</p>
                             <p>Overall Rating: {review.rating}</p>
