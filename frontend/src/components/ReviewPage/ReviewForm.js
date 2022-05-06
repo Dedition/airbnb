@@ -45,7 +45,9 @@ const ReviewForm = ({ closeModal }) => {
     useEffect(() => {
         const errors = [];
         if (content.length < 1) errors.push('Review content is required');
-        if (cleanliness < 1 || communication < 1 || rating < 1) errors.push(`Sorry, but [INCLUDE] rating must be between 1 and 5`);
+        if (cleanliness < 1 || cleanliness > 5) errors.push('Cleanliness rating must be between 1 and 5');
+        if (communication < 1 || communication > 5) errors.push('Communication rating must be between 1 and 5');
+        if (rating < 1 || rating > 5) errors.push('Rating must be between 1 and 5');
         setValidationErrors(errors);
     }, [content, cleanliness, communication, rating]);
 

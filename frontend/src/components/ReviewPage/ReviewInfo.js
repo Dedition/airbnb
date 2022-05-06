@@ -2,42 +2,33 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ReviewModal from "./ReviewModal";
+import ReviewList from "./ReviewList";
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                               Add modal form and CSS here
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-const Meter = ({ rating }) => <meter value={rating} min={0} max={5} />
+// const Meter = ({ rating }) => <meter id="meter" min="0" max='5' value={rating} />
 
 const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
 
     const { id } = useParams();
     //eslint-disable-next-line
-    const [userReview, setUserReview] = useState(false);
+    const [belongsToUser, setBelongsToUser] = useState(false);
 
+    const spot = useSelector(state => state.spots.spots);
+    console.log(spot)
     const reviewsObj = useSelector(state => state.reviews);
-    console.log(reviewsObj)
-    const user = useSelector(state => state.session.user);
-    console.log(user)
+    // console.log(reviewsObj)
+    const sessionUser = useSelector(state => state.session.user);
+    // console.log(user)
     const reviewsArr = Object.values(reviewsObj);
-    console.log(reviewsArr)
+    // console.log(reviewsArr)
 
     useEffect(() => {
-        if (user) setUserReview(true);
-        else setUserReview(false);
-    }, [user, reviewsArr])
-
-    const ReviewInfoLine = ({ data }) => (
-        <div className='review-meter' >
-            <strong>{`Please leave a review`}</strong>
-            {!data.value ? <div>WHY IS THERE NO REVIEWS?!</div> :
-                <>
-                    <Meter rating={data.value} />
-                    <strong>{data.value}</strong>
-                </>
-            }
-        </div>
-    );
+        if (sessionUser?.id === spot?.userId) setBelongsToUser(true);
+        else setBelongsToUser(false);
+    }, [sessionUser, spot])
 
     return (
         <div className='review-info'>
@@ -54,12 +45,14 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
                             <p>Communication: {review.communication}</p>
                             <p>Overall Rating: {review.rating}</p>
                             <br></br>
+                            <ReviewList reviews={reviews} />
                         </li>
                     ))}
                 </ul>
             </div>
             <div className='review-info-footer'>
-                {userReview ? <ReviewModal spotId={id} /> : <h3>You must be logged in to leave a review!</h3>}
+                {!belongsToUser && sessionUser && (<ReviewModal reviews={reviews} />)}
+
             </div>
         </div>
     );
