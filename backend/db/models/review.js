@@ -40,11 +40,11 @@ module.exports = (sequelize, DataTypes) => {
 
   Review.createReview = async (reqData) => await Review.create(reqData);
 
-  Review.getReviewsBySpotId = async (id) => await Review.findAll({
+  Review.getReviewsBySpotId = async (spotId) => await Review.findAll({
     where: { spotId }, order: [['createdAt', 'DESC']]
   });
 
-  Review.getReviewsByUserId = async (spotId) => await Review.findByPk(spotId);
+  Review.getReviewsByUserId = async (id) => await Review.findByPk(id);
 
   Review.updateReview = async (details) => {
     const id = details.id
@@ -54,12 +54,12 @@ module.exports = (sequelize, DataTypes) => {
       returning: true,
       plain: true
     });
-    return await Review.findByPk(id);
+    return await Review.findByPk({ id });
   };
 
   Review.deleteReview = async (id) => {
     const review = await Review.findByPk(id);
-    if (!review) throw new Error('Review not found. :( Be the first!');
+    if (!review) throw new Error('Review not found. :( Create one!');
     await Review.destroy({ where: { id } });
     return review;
   }
@@ -67,10 +67,7 @@ module.exports = (sequelize, DataTypes) => {
   Review.associate = function (models) {
     // associations can be defined here
     Review.belongsTo(models.User, { foreignKey: "userId" });
-    Review.belongsTo(models.Spot, {
-      foreignKey: 'spotId',
-      onDelete: 'CASCADE'
-    });
+    Review.belongsTo(models.Spot, { foreignKey: 'spotId' });
   };
   return Review;
 };

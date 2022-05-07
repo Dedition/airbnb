@@ -1,0 +1,70 @@
+.review-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid black 0.1em;
+    border-radius: 0.5em;
+    box-shadow: 0 0.05em 0.3em rgb(70, 70, 70);
+    margin-bottom: 1em;
+    padding: 1em;
+}
+
+.review-star {
+    margin-right: 0.5em;
+}
+
+.review-meter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 1em;
+    border-top: 0.1em solid black;
+    padding-top: 1em;
+    width: 100%;
+}
+
+.review-meter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 12em;
+}
+
+.review-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0.05em 0.3em rgb(70, 70, 70);
+    border: solid black 0.1em;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+    padding: 1em;
+}
+
+
+.review-list {
+    width: 95%;
+    border-radius: 0.5em;
+    padding: 0.5em;
+}
+
+.review-list:hover {
+    background-color: rgb(229, 229, 229);
+}
+
+#new-review-button {
+    width: 7em;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid black 0.1em;
+    border-radius: 0.5em;
+    margin-top: 1em;
+    color: #005c0c;
+}
+
+.review-list-header-right {
+    display: flex;
+    flex-direction: row;
+}

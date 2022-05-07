@@ -59,12 +59,12 @@ const SpotForm = ({ edit, spot, closeModal }) => {
 
     useEffect(() => {
         const errors = [];
-        if (address.length < 1) errors.push("Address is required");
-        if (city.length < 1) errors.push("City is required");
-        if (state.length < 1) errors.push("State is required");
-        if (country.length < 1) errors.push("Country is required");
-        if (name.length < 1) errors.push("Name is required");
-        if (price < 1) errors.push("Price is required");
+        if (address.length < 1 || address.length > 100) errors?.push("Address must be between 1 and 100 characters.");
+        if (city.length < 1 || city.length > 10) errors?.push("City must be between 1 and 10 characters.");
+        if (state.length < 1 || state.length > 2) errors?.push("State must be between 1 and 2 characters.");
+        if (country.length < 1 || country.length > 10) errors?.push("Country must be between 1 and 10 characters.");
+        if (name.length < 1 || name.length > 100) errors?.push("Name must be between 1 and 100 characters.");
+        if (price < 100) errors?.push("Price must be unreasonable. (Greater than 100)");
         setValidationErrors(errors);
     }, [address, city, state, country, name, price]);
 
@@ -81,7 +81,6 @@ const SpotForm = ({ edit, spot, closeModal }) => {
                 </div>
             </div>
 
-            <input styles={{ cursor: 'pointer' }} type="submit" value="Submit" />
             <img id="close-modal" src="https://img.icons8.com/ios/50/000000/cancel.png" alt="close" onClick={closeModal} />
         </NewForm>
     )

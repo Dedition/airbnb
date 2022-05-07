@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Spot } = require('../../db/models');
+const { Spot, Review } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
 const spotValidation = require('../../validations/spot');
@@ -44,9 +44,34 @@ router.put('/:id', requireAuth, asyncHandler(async (req, res) => {
 // }));
 
 router.get("/:id", asyncHandler(async (req, res) => {
-    const spotId = await Spot.findByPk(req.params);
+    const spotId = await Spot.findByPk(req.params.id);
     return res.json({ spotId });
 }));
+
+router.get("/:id/reviews", asyncHandler(async (req, res) => {
+    const spotId = await Spot.findByPk(req.params.id);
+    //! You can't use findAll
+    const reviews = await spotId.getReviews();
+    return res.json(reviews);
+}));
+
+
+router.post("/:id/reviews", requireAuth, asyncHandler(async (req, res) => {
+    //     const { id } = req.params;
+    const { id } = req.params;
+    const { rating, content, cleanliness, communication } = req.body;
+    const spot = await Spot.findByPk(id);
+    const review = await spot.createReview({ rating, content, cleanliness, communication, userId: req.user.id });
+    return res.json({ review });
+
+}));
+// const reviews = await Review.findAll({ where: { id: req.params.id }, include: [User], order: [['createdAt', 'DESC']] });
+// return res.json({ reviews });
+
+// console.log('=======================', req.params.id);
+// const review = await Review.createReview(req.body);
+// return res.json(await Review.findOne({ where: { id: review?.id }, include: [User] }));
+
 
 router.post('/', asyncHandler(async (req, res) => {
     // console.log('HELLOOOOOOOOOOOOOO');
@@ -66,6 +91,20 @@ router.delete('/:spotId', asyncHandler(async (req, res) => {
     }
     return res.status(404).json({ message: 'Spot not found' });
 }));
+
+
+router.delete('/reviews/:id', asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    // console.log('=========================', id);
+    const reviewToDestroy = await Review.findByPk(id);
+    console.log('\n \n \n', reviewToDestroy, '\n \n \n');
+    if (reviewToDestroy) {
+        await reviewToDestroy.destroy();
+        return res.json({ message: 'Review deleted' });
+    }
+    return res.status(404).json({ message: 'Review not found' });
+}));
+
 
 // const spotId = await Spot.destroy(req.params.id);
 //     if (!spotId) {
