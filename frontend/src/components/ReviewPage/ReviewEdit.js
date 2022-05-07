@@ -19,7 +19,7 @@ const ReviewEdit = ({ review, closeModal }) => {
         e.preventDefault();
 
 
-        const updatedReview = await dispatch(updateReview({ ...review, content, cleanliness, communication, rating })).catch(async (res) => {
+        const updatedReview = dispatch(updateReview({ ...review, content, cleanliness, communication, rating })).catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
         });
