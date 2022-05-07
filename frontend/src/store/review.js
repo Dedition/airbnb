@@ -36,6 +36,7 @@ export const createReview = (review, spotId) => async (dispatch) => {
 export const getReviews = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${id}/reviews`);
 
+
     if (response.ok) {
         const reviews = await response.json();
         dispatch(getAllOneReviews(reviews, id));
@@ -72,6 +73,10 @@ export const deleteReview = (id) => async (dispatch) => {
     }
     return response;
 };
+
+// ! Know what your data is - Typeof value
+// ! Know where your data comes from - Where it is stored
+// ! Know where your data is going
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 Reducer
 // TODO ——————————————————————————————————————————————————————————————————————————————————
@@ -85,12 +90,13 @@ const reviewReducer = (state = initialState, action) => {
             newState = { ...state, [action.review.review.id]: action.review.review };
             return newState;
         case GET_ALL_REVIEWS:
-            // console.log('==================', action.reviews);
-            // newState = { ...state, [action.review.id]: action.reviews };
-            newState = { ...state, ...action.reviews.reviews };
-            // newState = { ...state, [action.spotId]: action.reviews };
+            newState = { ...state };
+            action.reviews.forEach(review => {
+                newState[review.id] = review;
+            });
             return newState;
         case UPDATE_REVIEW:
+            newState = { ...state }
             newState = { ...state, [action.review.review.id]: action.review.review };
             return newState;
         case DELETE_REVIEW:
