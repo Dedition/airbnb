@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateReview } from "../../store/review";
 import { NewForm, NumInput } from '../Form/Form';
+import ReviewFormModal from "./ReviewEditModal";
+// import { useSelector } from 'react-redux';
+
 
 const ReviewEdit = ({ review, closeModal }) => {
     const dispatch = useDispatch();
     // const userId = useSelector(state => state.session.user.id);
+    // const reviewId = review?.id;
 
     const [content, setContent] = useState(review.content);
     const [cleanliness, setCleanliness] = useState(review.cleanliness);
@@ -21,7 +25,7 @@ const ReviewEdit = ({ review, closeModal }) => {
 
         const updatedReview = dispatch(updateReview({ ...review, content, cleanliness, communication, rating })).catch(async (res) => {
             const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
+            if (data && data.errors) setErrors(data?.errors);
         });
 
         if (updatedReview?.errors) setErrors(updatedReview?.errors);
@@ -73,16 +77,20 @@ const ReviewEdit = ({ review, closeModal }) => {
     // }, [content, cleanliness, communication, rating]);
 
     return (
-        <NewForm onSub={handleSubmit} validationErrors={validationErrors} errors={errors} buttonName={'Update'}>
-            <ul>
-                <li><label htmlFor='content'>Review Content</label></li>
-                <li><textarea name='content' id='content' value={content} onChange={(e) => setContent(e.target.value)} placeholder="C'mon, do it" /></li>
-            </ul>
-            <NumInput min={1} name='Cleanliness' state={cleanliness} setState={setCleanliness} required={false} />
-            <NumInput min={1} name='Communication' state={communication} setState={setCommunication} required={false} />
-            <NumInput min={1} name='Rating' state={rating} setState={setRating} required={false} />
-        </NewForm>
+        <ReviewFormModal />
     )
+
+    // return (
+    //     <NewForm onSub={handleSubmit} validationErrors={validationErrors} errors={errors} buttonName={'Update'}>
+    //         <ul>
+    //             <li><label htmlFor='content'>Review Content</label></li>
+    //             <li><textarea name='content' id='content' value={content} onChange={(e) => setContent(e.target.value)} placeholder="What are you thinking?" /></li>
+    //         </ul>
+    //         <NumInput min={1} name='Cleanliness' state={cleanliness} onChange={(e) => setContent(e.target.value)} setState={setCleanliness} required={false} />
+    //         <NumInput min={1} name='Communication' state={communication} onChange={(e) => setContent(e.target.value)} setState={setCommunication} required={false} />
+    //         <NumInput min={1} name='Rating' state={rating} onChange={(e) => setContent(e.target.value)} setState={setRating} required={false} />
+    //     </NewForm>
+    // )
 
 };
 

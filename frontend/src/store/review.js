@@ -97,7 +97,8 @@ const reviewReducer = (state = initialState, action) => {
             return newState;
         case UPDATE_REVIEW:
             newState = { ...state }
-            newState = { ...state, [action.review.review.id]: action.review.review };
+            // You got rid of '.id' in the key
+            newState = { ...state, [action.review.review]: action.review.review };
             return newState;
         case DELETE_REVIEW:
             newState = { ...state };
