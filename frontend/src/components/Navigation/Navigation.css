@@ -12,6 +12,13 @@
     margin: none;
 } */
 
+.nav-bar {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex;
+    justify-content: space-between;
+}
+
 .app {
     display: flex;
     flex-shrink: 0;
@@ -67,16 +74,18 @@
 
 #nav_bar_mid {
     display: flex;
-    justify-content: center;
+    flex: 2 1 auto !important;
+    justify-content: flex-start;
+    gap: 20px;
 }
 
 #nav_bar_right {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    padding: 0 1em 0 0;
-    justify-content: space-between;
-    justify-content: center;
+    flex: 0 1 20% !important;
+    padding-right: 5px;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 .fa-user-circle {
@@ -156,6 +165,7 @@
 
 .nav-link {
     background-color: none;
+    flex: 0 0 auto;
 }
 
 .nav-link:hover {
