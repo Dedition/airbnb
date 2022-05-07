@@ -35,14 +35,14 @@ function Navigation({ isLoaded }) {
             <button className='nav-link' onClick={handleLogout}>Logout</button>
         </>
     ) : (
-        <div>
+        <>
             <DemoUserLogin />
             <div></div>
             <LoginFormModal />
             <div></div>
             <NavLink to='/signup' className='nav-link'>Sign Up</NavLink>
             <div></div>
-        </div>
+        </>
     )
 
 
@@ -55,10 +55,10 @@ function Navigation({ isLoaded }) {
                         <div id='nav_bar_left'>
                             <img className='logo' src={process.env.PUBLIC_URL + `/images/svgexport-1.png`} alt='logo' />
                         </div>
-                        <div className='header_center'>
+                        {/* <div className='header_center'>
                             <input type="text" />
                             <i className="fa-solid fa-magnifying-glass" />
-                        </div>
+                        </div> */}
                         <NavLink className='nav-link' exact to="/">Home</NavLink>
                         <NavLink className='nav-link' to="/listings">Listings</NavLink>
                         <NavLink className='nav-link' to="/add-spot">Add Spot</NavLink>
