@@ -2,7 +2,6 @@ import { useHistory } from 'react-router-dom';
 
 const SpotCard = ({ spot }) => {
     const history = useHistory();
-    // console.log('==============', spot)
     let spotColor;
 
     if (spot.price > 0 && spot.price <= 100000) spotColor = 'brown';

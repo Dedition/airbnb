@@ -5,22 +5,11 @@ import * as spotActions from "../../store/spots";
 import SpotFormModal from "./SpotModal";
 import ReviewPage from '../ReviewPage';
 import "./Spot.css";
-// import DeleteSpot from "./DeleteSpot";
-// import CreateSpot from "./CreateSpot";
-// import { spotDeleteButton } from "../Form/DeleteButton";
-
 
 const SpotProfile = () => {
-    // const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
     const spot = useSelector((state) => state.spots[id]);
-    // console.log(spot);
-    // console.log(spot.id);
-
-    // useEffect(() => {
-    //     dispatch(spotActions.removeSpot(id));
-    // }, [dispatch, id]);
 
     useEffect(() => {
         window.scroll({ top: 0, left: 0, behavior: 'smooth' });

@@ -9,7 +9,6 @@ const router = express.Router();
 const stateValReg = /^(?:(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]))$/;
 
 router.get('/', asyncHandler(async (req, res) => {
-    // console.log(req);
     const spots = await Spot.findAll();
     return res.json({ spots });
 }));
@@ -28,21 +27,6 @@ router.put('/:id', requireAuth, asyncHandler(async (req, res) => {
     return res.json({ spot });
 }));
 
-// router.put('/spots/:spotId', requireAuth, asyncHandler(async (req, res) => {
-//     // console.log('WOORKKKKKINNNNNNNNNGGGGGGGGGGGGGG');
-//     const { id } = req.params;
-//     console.log('id', id);
-//     // console.log('ENTERED THE PUT==========================', spotId);
-//     const spotToUpdate = await Spot.findByPk(id);
-//     // const { errors, isValid } = spotValidation(req.body);
-//     // console.log(errors, 'HELLL=====================================')
-//     // if (!isValid) {
-//     //     return res.status(400).json({ errors });
-//     // }
-//     const spot = await spotToUpdate.update({ address, city, state, country, name, price });
-//     return res.json({ spot });
-// }));
-
 router.get("/:id", asyncHandler(async (req, res) => {
     const spotId = await Spot.findByPk(req.params.id);
     return res.json({ spotId });
@@ -57,7 +41,6 @@ router.get("/:id/reviews", asyncHandler(async (req, res) => {
 
 
 router.post("/:id/reviews", requireAuth, asyncHandler(async (req, res) => {
-    //     const { id } = req.params;
     const { id } = req.params;
     const { rating, content, cleanliness, communication } = req.body;
     const spot = await Spot.findByPk(id);
@@ -65,16 +48,8 @@ router.post("/:id/reviews", requireAuth, asyncHandler(async (req, res) => {
     return res.json({ review });
 
 }));
-// const reviews = await Review.findAll({ where: { id: req.params.id }, include: [User], order: [['createdAt', 'DESC']] });
-// return res.json({ reviews });
-
-// console.log('=======================', req.params.id);
-// const review = await Review.createReview(req.body);
-// return res.json(await Review.findOne({ where: { id: review?.id }, include: [User] }));
-
 
 router.post('/', asyncHandler(async (req, res) => {
-    // console.log('HELLOOOOOOOOOOOOOO');
     const { userId, address, city, state, country, name, price } = req.body;
     const newSpot = await Spot.build({ userId, address, city, state, country, name, price });
     await newSpot.save();
@@ -95,22 +70,12 @@ router.delete('/:spotId', asyncHandler(async (req, res) => {
 
 router.delete('/reviews/:id', asyncHandler(async (req, res) => {
     const { id } = req.params;
-    // console.log('=========================', id);
     const reviewToDestroy = await Review.findByPk(id);
-    console.log('\n \n \n', reviewToDestroy, '\n \n \n');
     if (reviewToDestroy) {
         await reviewToDestroy.destroy();
         return res.json({ message: 'Review deleted' });
     }
     return res.status(404).json({ message: 'Review not found' });
 }));
-
-
-// const spotId = await Spot.destroy(req.params.id);
-//     if (!spotId) {
-//         return res.status(404).json({ message: 'Spot not found' });
-//     }
-//     return res.json({ spotId });
-// }));
 
 module.exports = router;

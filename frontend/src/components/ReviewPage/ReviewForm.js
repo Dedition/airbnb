@@ -29,17 +29,6 @@ const ReviewForm = ({ closeModal }) => {
         if (newReview?.errors) setErrors(newReview?.errors);
 
         return closeModal();
-
-        // const newReview = await dispatch(createReview({
-        //     userId, id, content, cleanliness, communication, rating
-        // })).catch(async (res) => {
-        //     const data = await res.json();
-        //     if (data && data.errors) setErrors(data.errors);
-        // });
-
-        // if (newReview?.errors) setErrors(newReview?.errors);
-
-        // return closeModal();
     }
 
     useEffect(() => {

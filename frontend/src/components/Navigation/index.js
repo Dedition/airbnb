@@ -61,7 +61,7 @@ function Navigation({ isLoaded }) {
                         </div> */}
                         <NavLink className='nav-link' exact to="/">Home</NavLink>
                         <NavLink className='nav-link' to="/listings">Listings</NavLink>
-                        <NavLink className='nav-link' to="/add-spot">Add Spot</NavLink>
+                        {/* <NavLink className='nav-link' to="/add-spot">Add Spot</NavLink> */}
                     </>
                 ) : (
                     <>

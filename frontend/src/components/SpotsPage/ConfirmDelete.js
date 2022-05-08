@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 const ConfirmDelete = () => {
     const userId = useSelector(state => state.session.user.id);
-    console.log(userId);
 
     return (
         <div>

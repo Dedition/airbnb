@@ -10,7 +10,6 @@ import ReviewEdit from "./ReviewEdit";
 // TODO                               Add modal form and CSS here
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-// const Meter = ({ rating }) => <meter id="meter" min="0" max='5' value={rating} />
 
 const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
     const dispatch = useDispatch();
@@ -18,23 +17,12 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
     //eslint-disable-next-line
     const [belongsToUser, setBelongsToUser] = useState(false);
 
-    const spot = useSelector(state => state.spots[id]);
-    console.log(spot)
-    // console.log(reviewsObj)
     const sessionUser = useSelector(state => state.session.user);
-    // console.log(user)
     let reviewsArr = Object.values(useSelector(state => state.reviews));
     reviewsArr = reviewsArr.filter((review) => review?.spotId === +id);
-    // console.log('=====', reviewsArr[0]?.id);
-    // console.log();
 
     const handleDelete = () => dispatch(deleteReview(reviewsArr[0]?.id));
 
-    // console.log(reviewsArr)
-    // useEffect(() => {
-    //     if (sessionUser?.id === spot?.userId) setBelongsToUser(true);
-    //     else setBelongsToUser(false);
-    // }, [sessionUser, spot])
 
     return (
         <div className='review-info'>
@@ -64,21 +52,5 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
         </div>
     );
 }
-
-
-
-
-
-// return (
-//     <div className='review_heading'>
-//         {!reviewInfo?.value ? <div>STILL NO REVIEWS???</div> :
-//             <h2><i className="review-star fas fa-star" />{`${reviewInfo?.value} • ${totalReviews} reviews`} </h2>
-//         }
-//         <div className='review-meter-container'>
-//             {Object.values(reviewInfo).map(data => (<ReviewInfoLine key={data.name} data={data} />))}
-//         </div>
-//         {!user && (<ReviewModal reviews={reviews} />)}
-//     </div>
-// )
 
 export default ReviewInfo;
