@@ -41,11 +41,12 @@ export const getReviews = (id) => async (dispatch) => {
         dispatch(getAllOneReviews(reviews, id));
         return reviews;
     }
-    return response;
+    return response
 }
 
 export const updateReview = (review) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${review.id}`, {
+    console.log('=================', review);
+    const response = await csrfFetch(`/api/spots/${review.reviewId}/reviews`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -53,7 +54,9 @@ export const updateReview = (review) => async (dispatch) => {
         body: JSON.stringify(review),
     });
 
+    // console.log('=================', await response.json());
     if (response.ok) {
+        console.log('IM HERE');
         const updatedReview = await response.json();
         dispatch(updateOneReview(updatedReview));
         return updatedReview;
@@ -94,9 +97,9 @@ const reviewReducer = (state = initialState, action) => {
             });
             return newState;
         case UPDATE_REVIEW:
-            newState = { ...state }
+            // newState = { ...state }
             // You got rid of '.id' in the key
-            newState = { ...state, [action.review.review]: action.review.review };
+            newState = { ...state, [action.review.id]: action.review };
             return newState;
         case DELETE_REVIEW:
             newState = { ...state };

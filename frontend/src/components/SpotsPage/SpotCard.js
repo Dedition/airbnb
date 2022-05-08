@@ -23,7 +23,7 @@ const SpotCard = ({ spot }) => {
     return (
         <div className="spot_card" style={{ backgroundColor: spotColor }} onClick={handleClick}>
             <div className="spot_color_profile" id={spotColor} />
-            <h2 className='spot_title'>{spot.title}</h2>
+            {/* <h2 className='spot_title'>{spot.name}</h2> */}
             <div className="card-content">
                 <div className="media">
                     <div className="media-left">

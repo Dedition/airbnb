@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import ReviewModal from "./ReviewModal";
 import ReviewList from "./ReviewList";
 import { deleteReview } from "../../store/review";
-import ReviewEdit from "./ReviewEdit";
+import ReviewEditModal from "./ReviewEditModal";
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                               Add modal form and CSS here
@@ -20,7 +20,7 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
     const sessionUser = useSelector(state => state?.session?.user);
     let reviewsArr = Object.values(useSelector(state => state.reviews));
     reviewsArr = reviewsArr.filter((review) => review?.spotId === +id);
-    console.log(sessionUser === undefined)
+    // console.log(sessionUser === undefined)
     const handleDelete = () => dispatch(deleteReview(reviewsArr[0]?.id));
 
 
@@ -37,7 +37,7 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
                             <p>{review.content}</p>
                             {sessionUser?.id && (
                                 <button onClick={handleDelete}>Delete</button>)}
-                            <ReviewEdit review={review} />
+                            <ReviewEditModal review={review} />
                             <p>Cleanliness: {review.cleanliness}</p>
                             <p>Communication: {review.communication}</p>
                             <p>Overall Rating: {review.rating}</p>

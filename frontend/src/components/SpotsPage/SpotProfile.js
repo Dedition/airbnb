@@ -69,9 +69,11 @@ const SpotHeader = () => {
 
     return (
         <div className='spot_header row-list'>
-
+            {/* <div className='spot_header_image'> */}
+            {/* <img src={spot.image} alt='spot' /> HOUSE IMAGES HERE */}
+            {/* </div> */}
             <div className='spot_header_left'>
-                <h1>{spot?.title}</h1>
+                <h1>{spot?.name}</h1>
                 <h3>{`${spot?.city}, ${spot?.state}`}</h3>
 
                 <div style={{ width: '14em', margin: 0 }} className="line" />

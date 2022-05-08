@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { createReview, getReviews, updateReview } from "../../store/review";
 import { NewForm, NumInput } from '../Form/Form';
 
-const ReviewForm = ({ closeModal }) => {
+const ReviewForm = ({ closeModal, review }) => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const userId = useSelector(state => state.session.user.id);
+    const reviewId = review?.id;
 
     useEffect(() => { dispatch(getReviews(id)) }, [dispatch]);
 
@@ -20,11 +21,15 @@ const ReviewForm = ({ closeModal }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const newReview = await dispatch(createReview({ content, cleanliness, communication, rating, userId }, id)).catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-        });
+        console.log('HELLOO', review);
+        const newReview = await dispatch(updateReview({
+            content,
+            cleanliness,
+            communication,
+            rating,
+            userId,
+            reviewId
+        }, id))
 
         if (newReview?.errors) setErrors(newReview?.errors);
 

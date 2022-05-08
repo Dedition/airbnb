@@ -1,6 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Spot, Review } = require('../../db/models');
+const review = require('../../db/models/review');
 const { requireAuth } = require('../../utils/auth');
 
 const spotValidation = require('../../validations/spot');
@@ -46,6 +47,27 @@ router.post("/:id/reviews", requireAuth, asyncHandler(async (req, res) => {
     const spot = await Spot.findByPk(id);
     const review = await spot.createReview({ rating, content, cleanliness, communication, userId: req.user.id });
     return res.json({ review });
+}));
+
+router.put("/:id/reviews", requireAuth, asyncHandler(async (req, res) => {
+    // const id = req.body.id;
+    // delete req.body.id;
+    // console.log('===============', req.body);
+    // const updatedReview = await Review.update(req.body, {
+    //     where: { id },
+    //     returning: true,
+    //     plain: true
+    // });
+    const cleanliness = parseInt(req.body.cleanliness);
+    const communication = parseInt(req.body.communication);
+    const rating = parseInt(req.body.rating);
+    const { reviewId, content, userId } = req.body;
+    // console.log('THIS IS NEW', reviewId, cleanliness, communication, content, rating, userId);
+    const oldReview = await Review.findByPk(reviewId);
+    // console.log(oldReview);
+    const newEditReview = await oldReview.update({ cleanliness, communication, rating, content });
+    console.log(newEditReview);
+    return res.json(newEditReview);
 
 }));
 
