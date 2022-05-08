@@ -21,12 +21,12 @@ export function Listings({ userId = null }) {
                     <SpotCard key={spot.id}
                         id={`${spot.id}`}
                         spot={spot}
-                        title={spot.title}
+                        name={spot.name}
                     />
                 ))}
         </div >
     ) : (
-        <h2 style={{ marginBottom: '10px' }}>Sorry, we couldn't find any listings for you! :( (Unless you deleted them all, then you're a big meanie) </h2>
+        <h2 style={{ marginBottom: '10px' }}>Sorry, we couldn't find any listings for you! :( (Unless you deleted them all, then you're a bit mean) </h2>
     );
 }
 

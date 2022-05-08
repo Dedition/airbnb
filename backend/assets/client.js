@@ -16,11 +16,11 @@ const queries = [
 const results = [];
 let id = 1;
 for (let query of queries) {
-    client.houses
+    client.photos
         .search({ query, per_page: 10 })
-        .then((houses) => {
-            //   console.log(houses);
-            for (let photo of houses.houses) {
+        .then((photos) => {
+            //   console.log(photos);
+            for (let photo of photos.photos) {
                 const newPhoto = {
                     id: id,
                     name: photo.alt,
@@ -38,5 +38,5 @@ for (let query of queries) {
             //   }
             // });
         })
-        .then(() => { if (results.length === 3 * queries.length) console.log(results) });
+        .then(() => { if (results.length === 10 * queries.length) console.log(results) });
 }
