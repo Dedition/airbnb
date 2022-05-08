@@ -2,6 +2,8 @@
 
 body {
     height: 100%;
+    width: 100%;
+    margin: 0 auto;
     font-family: 'Circular', 'Roboto', sans-serif;
     margin: none;
 }

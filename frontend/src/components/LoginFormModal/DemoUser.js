@@ -4,7 +4,7 @@ import { demoUserLogin } from "../../store/session";
 const DemoUserLogin = () => {
     const dispatch = useDispatch();
     return (
-        <button className='demo-login' onClick={() => dispatch(demoUserLogin())}>Demo Login</button>
+        <button className=' nav-link demo-login' onClick={() => dispatch(demoUserLogin())}>Demo Login</button>
     )
 };
 
