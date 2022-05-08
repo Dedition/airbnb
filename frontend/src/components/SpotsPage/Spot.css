@@ -13,6 +13,11 @@ body {
     white-space: normal;
 }
 
+#close-modal {
+    width: 10%;
+    height: 10%;
+}
+
 .spot_page {
     width: 90%;
     margin: 0 auto;
@@ -45,7 +50,8 @@ body {
 .spot_header_right {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
+    gap: 8px;
 }
 
 .spot_card {
@@ -100,14 +106,22 @@ body {
 
 .create_spot_form_modal {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+    padding-top: 10px;;
 }
 
-.create_spot_form_modal input {
+.create_spot_form_modal>label {
     width: 90%;
+    flex: 0 0 auto;
 }
 
 .create_property_form_modal>* {
     width: 50%
+}
+
+.spot-actions {
+    flex: 0 0 auto;
+    justify-content: flex-start;
 }

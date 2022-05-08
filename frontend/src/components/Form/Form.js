@@ -8,8 +8,10 @@ import { Form, FormGroup, Label, Input, Button, } from 'reactstrap';
 export const NewForm = ({ onSub, validationErrors, errors, buttonName, children }) => (
     <>
         <Form className='column-listing' onSubmit={onSub}>
-            {children}
-            <Button className='form-button' type='submit' disabled={validationErrors.length > 0}>{buttonName}</Button>
+            <div className="create_spot_form_modal">
+                {children}
+                <Button className='form-button' type='submit' disabled={validationErrors.length > 0}>{buttonName}</Button>
+                </div>
         </Form>
 
         {validationErrors.length > 0 && (<>
@@ -36,7 +38,7 @@ export const TypeInput = ({ type, state, setState, name }) => {
     const formattedType = name.charAt(0).toUpperCase() + name.slice(1);
 
     return (
-        <FormGroup className='FormInp'>
+        <FormGroup className='form-input'>
             <Label htmlFor={formattedType}>{name}</Label>
             <Input
                 type={type || 'text'}
@@ -54,7 +56,7 @@ export const NumInput = ({ min, name, state, setState }) => {
     const formattedType = name.charAt(0).toUpperCase() + name.slice(1);
 
     return (
-        <FormGroup className='FormInp'>
+        <FormGroup className='form-input'>
             <Label htmlFor={formattedType}>{name}</Label>
             <Input className='inputField'
                 type='number'

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import * as spotActions from "../../store/spots";
 import { NewForm, TypeInput, NumInput } from "../Form/Form.js";
+import "./Spot.css";
 
 const SpotForm = ({ edit, spot, closeModal }) => {
     const dispatch = useDispatch();
@@ -55,14 +56,14 @@ const SpotForm = ({ edit, spot, closeModal }) => {
     return (
         <NewForm onSub={handleSubmit} validationErrors={validationErrors} errors={errors} buttonName={edit ? 'Update' : 'Host Your Spot'}>
             <div className={edit ? '' : 'create_spot_form_modal'}>
-                <div>
+                <>
                     <TypeInput name='Address' value={address} setState={setAddress} />
                     <TypeInput name='City' value={city} setState={setCity} />
                     <TypeInput name='State' value={state} setState={setState} />
                     <TypeInput name='Country' value={country} setState={setCountry} />
                     <TypeInput name='Name' value={name} setState={setName} />
                     <NumInput name='Price' value={price} setState={setPrice} />
-                </div>
+                </>
             </div>
 
             <img id="close-modal" src="https://img.icons8.com/ios/50/000000/cancel.png" alt="close" onClick={closeModal} />
