@@ -9,7 +9,7 @@ const ReviewForm = ({ closeModal }) => {
     const { id } = useParams();
     const userId = useSelector(state => state.session.user.id);
 
-    useEffect(() => { dispatch(getReviews(id)) }, [dispatch]);
+    useEffect(() => { dispatch(getReviews(id)) }, [dispatch, id]);
 
     const [content, setContent] = useState('');
     const [cleanliness, setCleanliness] = useState(0);
@@ -46,7 +46,7 @@ const ReviewForm = ({ closeModal }) => {
                 <label htmlFor='content'>Review Content</label>
             </div>
             <div className="form-input">
-            <textarea name='content' id='content' value={content} onChange={(e) => setContent(e.target.value)} placeholder="Review" />
+                <textarea name='content' id='content' value={content} onChange={(e) => setContent(e.target.value)} placeholder="Review" />
             </div>
             <NumInput min={1} name='Cleanliness' state={cleanliness} setState={setCleanliness} required={false} />
             <NumInput min={1} name='Communication' state={communication} setState={setCommunication} required={false} />

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import * as spotActions from "../../store/spots";
 import { NewForm, TypeInput, NumInput } from "../Form/Form.js";
+import "./Spot.css";
 
 const SpotForm = ({ edit, spot, closeModal }) => {
     const dispatch = useDispatch();

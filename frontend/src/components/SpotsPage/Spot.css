@@ -13,6 +13,11 @@ body {
     white-space: normal;
 }
 
+#close-modal {
+    width: 10%;
+    height: 10%;
+}
+
 .spot_page {
     width: 90%;
     margin: 0 auto;

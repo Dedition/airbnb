@@ -24,7 +24,7 @@
     gap: 5px;
     padding: 5px;
     flex-direction: row;
-    align-items: fkex-start;
+    align-items: flex-start;
     display: flex;
     justify-content: space-between;
 }
@@ -33,6 +33,6 @@
     flex: 0 0 auto;
 }
 
-/* .form-input textarea {
+.form-input textarea {
     width: 100%
-} */
+}
