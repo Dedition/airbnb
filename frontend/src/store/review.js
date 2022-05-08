@@ -24,7 +24,6 @@ export const createReview = (review, spotId) => async (dispatch) => {
         },
         body: JSON.stringify(review),
     });
-    // console.log('HELLO=====================', response);
     if (response.ok) {
         const review = await response.json();
         dispatch(createOneReview(review));
@@ -86,7 +85,6 @@ const reviewReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case CREATE_REVIEW:
-            // console.log('==================', action.reviews);
             newState = { ...state, [action.review.review.id]: action.review.review };
             return newState;
         case GET_ALL_REVIEWS:

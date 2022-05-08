@@ -36,7 +36,7 @@ function App() {
           <Route path="/profile"><h2>Profile</h2></Route>
           <Route path="/listings"><h2>Listings</h2><Listings /></Route>
           <Route path="/listing/:id"><h2>Listing</h2><SpotProfile /></Route>
-          <Route path="/add-spot"><CreateSpot /></Route>
+          {/* <Route path="/add-spot"><CreateSpot /></Route> */}
           <Route path="/confirmDelete"><ConfirmDelete /></Route>
           <Route path="*"><h2>Page Not Found</h2></Route>
         </Switch>

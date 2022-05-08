@@ -11,9 +11,7 @@ reviewData.forEach(review => {
     cleanliness: Math.floor(Math.random() * 5) + 1,
     content: review.content
   });
-  console.log(review);
 });
-// console.log(newReview);
 
 module.exports = {
   up: (queryInterface, Sequelize) => {

@@ -22,11 +22,9 @@ export const createSpotAction = (spot) => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
     });
-    // console.log('=================================');
     if (response.ok) {
 
         const { newSpot } = await response.json();
-        // console.log('=================================', data);
         dispatch(createSpot(newSpot));
         return newSpot;
     }
@@ -67,14 +65,12 @@ export const getOneSpot = (spotId) => async (dispatch) => {
 };
 
 export const updateSpot = (spot, spotId) => async (dispatch) => {
-    // console.log('spot', spot);
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
     });
     if (response.ok) {
-        // console.log('===========================', response);
         const updatedSpot = await response.json();
         dispatch(editSpot(updatedSpot));
         return updatedSpot;
@@ -82,36 +78,16 @@ export const updateSpot = (spot, spotId) => async (dispatch) => {
     return response;
 };
 
-// method: 'PUT',
-// body: JSON.stringify(spot),
-
-// export const fetchSpot = (id) => async (dispatch) => {
-//     const response = await csrfFetch(`/api/spots/${id}`);
-
-//     if (response.ok) {
-//         const data = await response.json();
-//         dispatch(getSpots(data));
-//         return response;
-//     }
-// };
-
 export const removeSpot = (id) => async (dispatch) => {
-    // console.log(id);
     const response = await csrfFetch(`/api/spots/${id}`, { method: 'DELETE' });
-    // console.log(response);
 
     if (response.ok) {
-        // const spotId = await response.json();
-        // dispatch(deleteSpot(spotId));
         dispatch(deleteSpot(id))
         return id;
     }
     return response;
 };
 
-// const { id: delSpotId } = await response.json();
-// dispatch(deleteSpot(delSpotId, userId));
-// return delSpotId;
 // todo ——————————————————————————————————————————————————————————————————————————————————
 // todo                                 Reducer
 // todo ——————————————————————————————————————————————————————————————————————————————————
@@ -122,11 +98,6 @@ const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_SPOT: {
             newState = { ...state, [action.payload.id]: action.payload };
-            // console.log('HELLLLOOOOOOOO', action.newState);
-            // console.log('HELLLLOOOOOOOO', action.payload);
-            // console.log('HELLLLOOOOOOOO', action.newState);
-
-            // newState.listOfSpots.unshift(action.spot);
             return newState;
         }
         case GET_SPOT:
@@ -137,7 +108,6 @@ const spotReducer = (state = initialState, action) => {
             newState = {};
             action.payload.spots.forEach(spot => newState[spot.id] = spot)
             return newState;
-        // console.log('action.payload', action.payload);
         case GET_ONE_SPOT:
             newState = { ...state, [action.payload.id]: action.spot };
             return newState;
@@ -145,52 +115,15 @@ const spotReducer = (state = initialState, action) => {
             newState = { ...state };
             newState[action.payload.spot.id] = action.payload.spot;
             console.log(action.payload.spot.id)
-            // console.log(newState)
             return newState
         case DELETE_SPOT:
             newState = { ...state };
             delete newState[action.spotId];
-            // const deletedSpot = state.listOfSpots.filter(spot => spot.id !== action.spotId);
-            // newState.listOfSpots = deletedSpot;
             return newState;
         default:
             return state;
     }
 };
 export default spotReducer;
-
-    //     case GET_SPOT:
-    //         // newState = Object.assign({}, state);
-    //         // newState = action.payload;
-    //         // newState = Object.assign({}, state);
-    //         // action.payload.forEach(spot => {
-    //         //     newState[spot.id] = spot;
-    //         // });
-
-    //         return newState;
-    //     case DELETE_SPOT:
-    //         newState = { ...state };
-    //         delete newState[action.spotId];
-    //         return newState;
-    //     case CREATE_SPOT:
-    //         // console.log(action.payload);
-    //         // console.log(state);
-    //         // newState = action.payload;
-    //         // newState = { ...state, ...newState };
-    //         // newState = Object.assign(...state, action.payload)
-    //         // newState[action.payload.id] = action.payload;
-    //         // newState = Object.assign({}, state);
-    //         // newState = action.payload;
-    //         // return newState;
-    //         newState = { ...state };
-    //         newState[action.payload.id] = action.payload;
-    //         return newState;
-    //     case EDIT_SPOT:
-    //         newState = { ...state };
-    //         newState[action.payload.id] = action.payload;
-    //         return newState;
-    //     default:
-    //         return state;
-    // }
 
 // After completing the reducer and exporting it, your next step should be to create a new component.

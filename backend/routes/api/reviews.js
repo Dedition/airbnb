@@ -18,7 +18,6 @@ const router = express.Router();
 // IT'S CALLED 'id'. DON'T FORGET IT
 router.put('/:id', validatePUT, validateReview, asyncHandler(async (req, res, next) => {
     const id = req.body.id;
-    console.log(req.params.id)
 
     delete req.body.id;
     const updatedReview = await Review.update(req.body, { where: { id }, returning: true, plain: true });
@@ -26,8 +25,6 @@ router.put('/:id', validatePUT, validateReview, asyncHandler(async (req, res, ne
 }));
 
 router.delete('/:id', asyncHandler(async (req, res) => {
-    console.log();
-    console.log(req.body);
     return res.json(await Review.deleteReview({
         where:
             { id: req.params.id }

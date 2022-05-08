@@ -19,24 +19,10 @@ const SpotForm = ({ edit, spot, closeModal }) => {
 
 
     const userId = useSelector(state => state.session.user.id);
-    // console.log(typeof userId);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // eslint-disable-next-line
-        const formData = new FormData();
-
-        // if (edit) {
-        //     formData.append("id", spot?.id);
-        // }
-        // formData.append('userId', userId);
-        // formData.append("address", address);
-        // formData.append("city", city);
-        // formData.append("state", state);
-        // formData.append("country", country);
-        // formData.append("name", name);
-        // formData.append("price", price);
 
         const newInfo = { userId: userId, address, city, state, country, name, price };
 
@@ -47,8 +33,6 @@ const SpotForm = ({ edit, spot, closeModal }) => {
         }
 
         const created = await dispatch(spotActions.createSpotAction(newInfo));
-
-        // if (created?.errors) setErrors(created?.errors);
 
         if (created?.id) {
             history.push("/listing/" + created?.id);

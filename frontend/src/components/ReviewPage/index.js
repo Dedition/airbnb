@@ -14,7 +14,6 @@ const ReviewPage = ({ id }) => {
     const avg = (reviews, key) => (Array.from(reviews).reduce((prev, curr) => prev + curr[key], 0)) / reviews.length;
 
     const reviews = useSelector(state => state);
-    console.log(reviews);
 
     useEffect(() => { dispatch(getReviews(id)) }, [dispatch]);
 
