@@ -1,26 +1,26 @@
 import { createClient } from "pexels";
 const client = createClient(
-    "563492ad6f917000010000011cb1124603f04ea5b135ddc5d01c3158"
+    "563492ad6f9170000100000111b342efdab04e3fa65693b6376f3069"
 );
 // const query = "Nature";
 const queries = [
-    "Animal",
-    "Forest",
-    "Ocean",
-    "Plant",
-    "Floral",
-    "Succulent",
-    "Mountain",
-    "Fish"
+    "House",
+    "Apartments",
+    "Flats",
+    "Rooms",
+    "Property",
+    "Studio",
+    "Townhouse",
+    "Condo",
 ];
 const results = [];
 let id = 1;
 for (let query of queries) {
-    client.photos
-        .search({ query, per_page: 3 })
-        .then((photos) => {
-            //   console.log(photos);
-            for (let photo of photos.photos) {
+    client.houses
+        .search({ query, per_page: 10 })
+        .then((houses) => {
+            //   console.log(houses);
+            for (let photo of houses.houses) {
                 const newPhoto = {
                     id: id,
                     name: photo.alt,
