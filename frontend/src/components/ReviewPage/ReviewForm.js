@@ -42,10 +42,12 @@ const ReviewForm = ({ closeModal }) => {
 
     return (
         <NewForm onSub={handleSubmit} validationErrors={validationErrors} errors={errors} buttonName={'Post'}>
-            <ul>
-                <li><label htmlFor='content'>Review Content</label></li>
-                <li><textarea name='content' id='content' value={content} onChange={(e) => setContent(e.target.value)} placeholder="Review" /></li>
-            </ul>
+            <div className="form-input">
+                <label htmlFor='content'>Review Content</label>
+            </div>
+            <div className="form-input">
+            <textarea name='content' id='content' value={content} onChange={(e) => setContent(e.target.value)} placeholder="Review" />
+            </div>
             <NumInput min={1} name='Cleanliness' state={cleanliness} setState={setCleanliness} required={false} />
             <NumInput min={1} name='Communication' state={communication} setState={setCommunication} required={false} />
             <NumInput min={1} name='Rating' state={rating} setState={setRating} required={false} />

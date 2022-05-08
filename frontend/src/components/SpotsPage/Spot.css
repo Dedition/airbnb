@@ -101,12 +101,15 @@ body {
 
 .create_spot_form_modal {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+    padding-top: 10px;;
 }
 
-.create_spot_form_modal input {
+.create_spot_form_modal>label {
     width: 90%;
+    flex: 0 0 auto;
 }
 
 .create_property_form_modal>* {
