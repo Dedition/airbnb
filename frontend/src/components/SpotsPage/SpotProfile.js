@@ -41,14 +41,13 @@ const SpotProfile = () => {
     return (
         // <div onClick={handleClick} className={`spot-profile ${spotColor}`}>
         <div className={`spot_page ${spotColor}`}>
-            <div className='spot-profile-image' id={spotColor}>
-                <SpotHeader spot={spot} />
-                <div style={{ width: '75%' }} className="line" />
-                {/* <Image spotId={spotId}/>
-        <div style={{width:'75%'}} className="line"/> */}
-                <ReviewPage id={id} />
-                <div className='filler-box' style={{ backgroundColor: 'white' }} />
-            </div>
+            <div className='spot-profile-image' id={spotColor} />
+            <SpotHeader className="spot_header" spot={spot} />
+            <div style={{ width: '75%' }} className="line" />
+            {/* <Image spotId={spotId}/>
+    <div style={{width:'75%'}} className="line"/> */}
+            <ReviewPage id={id} />
+            <div className='filler-box' style={{ backgroundColor: 'white' }} />
         </div>
     );
 }
@@ -80,11 +79,11 @@ const SpotHeader = () => {
                 </NavLink> */}
             </div>
 
-            <div className='spot_header_right'> {sessionUser?.id && (<>
-                <SpotFormModal name='Edit Spot' edit={true} spot={spot} />
-                <button onClick={handleDelete}>Delete Spot</button>
-            </>)}
-            </div>
+             {sessionUser?.id && (
+             <div className='spot_header_right'>
+                <SpotFormModal className="spot-actions" name='Edit Spot' edit={true} spot={spot} />
+                <button className="spot-actions" onClick={handleDelete}>Delete Spot</button>
+            </div>)}
         </div>
     )
 }
