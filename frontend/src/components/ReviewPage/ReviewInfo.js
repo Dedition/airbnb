@@ -17,10 +17,10 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
     //eslint-disable-next-line
     const [belongsToUser, setBelongsToUser] = useState(false);
 
-    const sessionUser = useSelector(state => state.session.user);
+    const sessionUser = useSelector(state => state?.session?.user);
     let reviewsArr = Object.values(useSelector(state => state.reviews));
     reviewsArr = reviewsArr.filter((review) => review?.spotId === +id);
-
+    console.log(sessionUser === undefined)
     const handleDelete = () => dispatch(deleteReview(reviewsArr[0]?.id));
 
 
@@ -35,7 +35,8 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
                     {reviewsArr.map(review => (
                         <li key={review.id}>
                             <p>{review.content}</p>
-                            <button onClick={handleDelete}>Delete</button>
+                            {sessionUser?.id && (
+                                <button onClick={handleDelete}>Delete</button>)}
                             <ReviewEdit review={review} />
                             <p>Cleanliness: {review.cleanliness}</p>
                             <p>Communication: {review.communication}</p>

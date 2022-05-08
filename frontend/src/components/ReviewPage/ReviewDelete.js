@@ -6,11 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 const ReviewDelete = ({ id }) => {
     const dispatch = useDispatch();
     const handleDelete = () => dispatch(deleteReview(id));
+    const sessionUser = useSelector(state => state.session.user);
 
     return (
-        <button className="btn btn-danger" onClick={handleDelete}>
-            Delete
-        </button>
+        <>
+            {!sessionUser && (
+                <button className="btn btn-danger" onClick={handleDelete}>
+                    Delete
+                </button>
+            )}
+        </>
     );
 };
 

@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateReview } from "../../store/review";
 import { NewForm, NumInput } from '../Form/Form';
 import ReviewFormModal from "./ReviewEditModal";
-// import { useSelector } from 'react-redux';
 
 
 const ReviewEdit = ({ review, closeModal }) => {
     const dispatch = useDispatch();
-    // const userId = useSelector(state => state.session.user.id);
-    // const reviewId = review?.id;
+    const sessionUser = useSelector(state => state?.session?.user?.id);
+    const reviewId = review?.id;
 
     const [content, setContent] = useState(review.content);
     const [cleanliness, setCleanliness] = useState(review.cleanliness);
@@ -19,21 +18,19 @@ const ReviewEdit = ({ review, closeModal }) => {
     const [validationErrors, setValidationErrors] = useState([]);
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
 
 
-        const updatedReview = dispatch(updateReview({ ...review, content, cleanliness, communication, rating })).catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data?.errors);
-        });
+    //     const updatedReview = dispatch(updateReview({ ...review, content, cleanliness, communication, rating })).catch(async (res) => {
+    //         const data = await res.json();
+    //         if (data && data.errors) setErrors(data?.errors);
+    //     });
 
-        if (updatedReview?.errors) setErrors(updatedReview?.errors);
+    //     if (updatedReview?.errors) setErrors(updatedReview?.errors);
 
-        return closeModal();
-    }
-
-
+    //     return closeModal();
+    // }
     useEffect(() => {
         const errors = [];
         if (content.length < 1) errors.push('Review content is required');
@@ -43,9 +40,14 @@ const ReviewEdit = ({ review, closeModal }) => {
         setValidationErrors(errors);
     }, [content, cleanliness, communication, rating]);
 
+
+    // If there is a sessionUser show ReviewFormModal. If there isn't, render a h3
+    // asking them to login to leave a review.
     return (
-        <ReviewFormModal />
-    );
+        <>
+            {sessionUser && <ReviewFormModal closeModal={closeModal} review={review} />}
+        </>
+    )
 };
 
 
