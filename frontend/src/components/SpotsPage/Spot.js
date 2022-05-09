@@ -22,6 +22,7 @@ export function Listings({ userId = null }) {
                         id={`${spot.id}`}
                         spot={spot}
                         name={spot.name}
+
                     />
                 ))}
         </div >
