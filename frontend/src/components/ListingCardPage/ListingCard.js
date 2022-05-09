@@ -7,7 +7,7 @@ function ListingCards({ src, title, description, price }) {
             <div className='cards_text'>
                 <h2>{title}</h2>
                 <h4>{description}</h4>
-                <h3>${price}</h3>
+                <a href='/listings'>Explore Now</a>
             </div>
         </div>
     )

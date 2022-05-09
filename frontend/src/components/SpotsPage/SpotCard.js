@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { csrfFetch } from '../../store/csrf';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 const SpotCard = ({ spot }) => {
     const history = useHistory();
