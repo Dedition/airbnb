@@ -24,23 +24,23 @@ function Search() {
         setEndDate(ranges.selection.endDate);
     }
 
-    return (
-        <div className='search'>
-            <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
-            <div className='dateBtn'>
-                <h2>Number of guests</h2>
-                <div id='dateInput'>
-                    <Button>Search Airbnb</Button>
-                    <Input type="number" name="guests" min={0} max={10} />
-                </div>
+    // return (
+    //     <div className='search'>
+    //         <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
+    //         <div className='dateBtn'>
+    //             <h2>Number of guests</h2>
+    //             <div id='dateInput'>
+    //                 <Button>Search Airbnb</Button>
+    //                 <Input type="number" name="guests" min={0} max={10} />
+    //             </div>
 
-            </div>
-            {/* <button onClick={() => setShowSearch(!showSearch)} className='banner_searchButton'></button> */}
-            {/* {showSearch && <Search />}
-            <input min={0} defaultValue={0} type='number' />
-            <Button color='primary'>Search</Button> */}
-        </div>
-    )
+    //         </div>
+    //         {/* <button onClick={() => setShowSearch(!showSearch)} className='banner_searchButton'></button> */}
+    //         {/* {showSearch && <Search />}
+    //         <input min={0} defaultValue={0} type='number' />
+    //         <Button color='primary'>Search</Button> */}
+    //     </div>
+    // )
 }
 
 export default Search

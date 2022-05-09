@@ -28,9 +28,9 @@ function Navigation({ isLoaded }) {
 
     const sessionLinks = sessionUser ? (
         <>
-            <SpotFormModal className="nav-link"/>
+            <SpotFormModal className="nav-link" />
             <div></div>
-            <NavLink to='/profile' className='nav-link'>My Profile</NavLink>
+            {/* <NavLink to='/profile' className='nav-link'>My Profile</NavLink> */}
             <div></div>
             <button className='nav-link' onClick={handleLogout}>Logout</button>
         </>
