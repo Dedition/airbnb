@@ -41,7 +41,7 @@ button {
 a {
     text-decoration: none;
     color: #2ea44f;
-    border: #2ea44f solid 1px;
+    /* border: #2ea44f solid 1px; */
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
