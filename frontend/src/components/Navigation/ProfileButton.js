@@ -14,6 +14,8 @@ function ProfileButton({ user }) {
         setShowMenu(true);
     };
 
+    // Comment
+
     useEffect(() => {
         if (!showMenu) return;
 
