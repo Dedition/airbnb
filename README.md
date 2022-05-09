@@ -4,6 +4,11 @@ AirbnbPixel clone is an application originally made based on the official
 ![Airbnb](https://www.airbnb.com/) site.
 Users on this site will be able to create their own account, create their own spots, and also create, edit and delete a review on it.
 
+## To start up the application, you need to do
+
+    1. Install dependencies with an npm i on the backend and frontend folder.
+    2. Run the server with npm run start
+
 The key features of this application are:
 
     * Create your own account
