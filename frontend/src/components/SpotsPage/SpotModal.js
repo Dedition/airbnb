@@ -4,7 +4,7 @@ import SpotForm from './SpotForm';
 
 // import { Button } from 'reactstrap';
 
-const SpotModal = ({ name = 'Become a Host', edit = false, spot = null }) => {
+const SpotModal = ({ name = 'Become a Host', edit = props.edit, spot = props.spot }) => {
     const [showModal, setShowModal] = useState(false);
 
     return (

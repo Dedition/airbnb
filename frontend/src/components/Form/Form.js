@@ -34,7 +34,7 @@ export const NewForm = ({ onSub, validationErrors, errors, buttonName, children 
     </>
 )
 
-export const TypeInput = ({ type, state, setState, name }) => {
+export const TypeInput = ({ type, value, state, setState, name }) => {
     const formattedType = name.charAt(0).toUpperCase() + name.slice(1);
 
     return (
@@ -43,7 +43,7 @@ export const TypeInput = ({ type, state, setState, name }) => {
             <Input
                 type={type || 'text'}
                 id={formattedType}
-                value={state}
+                value={value}
                 onChange={(e) => setState(e.target.value)}
                 placeholder={`Enter ${name}`}
                 required={false}
