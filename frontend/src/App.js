@@ -12,6 +12,7 @@ import CreateSpot from "./components/SpotsPage/CreateSpot";
 // import Spot from "./components/SpotsPage/Spot";
 import SpotProfile from "./components/SpotsPage/SpotProfile";
 import ConfirmDelete from "./components/SpotsPage/ConfirmDelete";
+import SignupFormModal from "./components/SignupFormPage/modal";
 // import SpotForm from "./components/SpotsPage/SpotForm";
 
 function App() {
@@ -31,9 +32,9 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'><Landing /></Route>
-          <Route path="/signup"><SignupFormPage /><h2>Sign Up</h2></Route>
-          <Route path="/login"><LoginFormPage /><h2>Login</h2></Route>
-          <Route path="/profile"><h2>Profile</h2></Route>
+          <Route path="/signup"><SignupFormModal /></Route>
+          <Route path="/login"><LoginFormPage /></Route>
+          {/* <Route path="/profile"><h2>Profile</h2></Route> */}
           <Route path="/listings"><h2>Listings</h2><Listings /></Route>
           <Route path="/listing/:id"><h2>Listing</h2><SpotProfile /></Route>
           {/* <Route path="/add-spot"><CreateSpot /></Route> */}

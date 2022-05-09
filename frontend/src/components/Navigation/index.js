@@ -7,6 +7,7 @@ import SpotFormModal from '../SpotsPage/SpotModal';
 import './Navigation.css';
 import DemoUserLogin from '../LoginFormModal/DemoUser';
 import * as sessionActions from '../../store/session';
+import SignupFormModal from '../SignupFormPage/modal';
 
 function Navigation({ isLoaded }) {
     const dispatch = useDispatch();
@@ -40,7 +41,7 @@ function Navigation({ isLoaded }) {
             <div></div>
             <LoginFormModal className="nav-link" />
             <div></div>
-            <NavLink to='/signup' className='nav-link'>Sign Up</NavLink>
+            <SignupFormModal className='nav-link' />
             <div></div>
         </>
     )
