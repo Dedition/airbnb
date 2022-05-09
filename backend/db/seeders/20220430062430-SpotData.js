@@ -9,7 +9,7 @@ addressData.forEach(address => {
     city: address.city,
     state: address.state,
     country: address.country,
-    name: address.display_address[1],
+    name: address.display_address[0],
     price: Math.floor(Math.random() * 10000000)
   });
 });
