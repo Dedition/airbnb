@@ -1,11 +1,12 @@
+//eslint-disable-next-line
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Banner.css';
-import Search from './Search';
-import { Button } from 'reactstrap';
+// import Search from './Search';
+// import { Button } from 'reactstrap';
 
 function Banner() {
-    const [showSearch, setShowSearch] = useState(false);
+    // const [showSearch, setShowSearch] = useState(false);
 
     return (
         <div className='banner' id='head_banner'>
