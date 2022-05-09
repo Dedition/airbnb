@@ -44,7 +44,7 @@ const SpotCard = ({ spot }) => {
                 <div className="media">
                     <div className="media-left">
                         <figure className="48x48">
-                            <img className="card_image" src={spotImages[parseInt(spot?.id)]} alt="Placeholder" />
+                            <img className="card_image" src={`${spotImages[parseInt(spot?.id)]}`} alt="Placeholder" />
                         </figure>
                     </div>
                     <div className="card_content">
