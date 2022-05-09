@@ -28,7 +28,7 @@ const SpotCard = ({ spot }) => {
                 <div className="media">
                     <div className="media-left">
                         <figure className="48x48">
-                            <img className="card_image" src={spot.image} alt="Placeholder" />
+                            <img className="card_image" src={'/images:'+spot.id} alt="Placeholder" />
                         </figure>
                     </div>
                     <div className="card_content">
