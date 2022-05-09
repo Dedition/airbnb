@@ -38,6 +38,26 @@ button {
     white-space: nowrap;
 }
 
+a {
+    text-decoration: none;
+    color: #2ea44f;
+    border: #2ea44f solid 1px;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+
+}
+
 /*
 .nav-link {
     color: white;
