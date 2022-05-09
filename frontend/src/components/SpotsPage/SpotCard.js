@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { csrfFetch } from '../../store/csrf';
+import {useState, useEffect} from 'react';
 
 const SpotCard = ({ spot }) => {
     const history = useHistory();
@@ -21,13 +22,19 @@ const SpotCard = ({ spot }) => {
 
     const handleClick = () => history.push(`/listing/${spot.id}`);
 
-    let spotImages = null;
+    let [spotImages, setSpotImages] = useState({})
 
     const getSpotImages = async () => {
-        return await csrfFetch('/api/images');
+        let resp = await csrfFetch('/api/images');
+        let rj = await resp.json();
+        setSpotImages(rj)
+        return rj;
     }
 
-    spotImages = getSpotImages();
+    useEffect(() => {
+        getSpotImages();
+    }, []);
+
 
     return (
         <div className="spot_card" style={{ backgroundColor: spotColor }} onClick={handleClick}>
@@ -37,7 +44,7 @@ const SpotCard = ({ spot }) => {
                 <div className="media">
                     <div className="media-left">
                         <figure className="48x48">
-                            <img className="card_image" src={spotImages[spot?.id]} alt="Placeholder" />
+                            <img className="card_image" src={spotImages[parseInt(spot?.id)]} alt="Placeholder" />
                         </figure>
                     </div>
                     <div className="card_content">
