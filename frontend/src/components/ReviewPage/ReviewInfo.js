@@ -21,9 +21,11 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
     let reviewsArr = Object.values(useSelector(state => state.reviews));
     reviewsArr = reviewsArr.filter((review) => review?.spotId === +id);
     // console.log(sessionUser === undefined)
-    const handleDelete = () => dispatch(deleteReview(reviewsArr[0]?.id));
+    const handleDelete = (idx) => {
+     return () => dispatch(deleteReview(reviewsArr[idx]?.id));
+    }
 
-
+    let idx = 0;
     return (
         <div className='review-info'>
             <div className='review-info-header'>
@@ -36,7 +38,7 @@ const ReviewInfo = ({ reviewInfo, totalReviews, reviews }) => {
                         <li key={review.id}>
                             <p>{review.content}</p>
                             {sessionUser?.id && (
-                                <button onClick={handleDelete}>Delete</button>)}
+                                <button onClick={handleDelete(idx++)}>Delete</button>)}
                             <ReviewEditModal review={review} />
                             <p>Cleanliness: {review.cleanliness}</p>
                             <p>Communication: {review.communication}</p>
